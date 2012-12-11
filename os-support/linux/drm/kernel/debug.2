@@ -1,0 +1,25 @@
+=== KERNEL HEADERS IN /usr/src/linux/include
+=== SMP=0 MODULES=1 MODVERSIONS=1 AGP=1
+=== kill_fasync has 3 parameters
+=== Compiling for machine i686
+=== WARNING
+=== WARNING 2.4.0 kernels before 2.4.0-test11 DO NOT WORK
+=== WARNING
+cc  -D__KERNEL__ -DMODULE -DCONFIG_MTRR -fomit-frame-pointer -DCONFIG_AGP -DCONFIG_AGP_MODULE -DMODVERSIONS -include /usr/src/linux/include/linux/modversions.h -DKILLFASYNCHASTHREEPARAMETERS -DEXPORT_SYMTAB -I/usr/src/linux/include -c radeon_drv.c -o radeon_drv.o
+cc  -D__KERNEL__ -DMODULE -DCONFIG_MTRR -fomit-frame-pointer -DCONFIG_AGP -DCONFIG_AGP_MODULE -DMODVERSIONS -include /usr/src/linux/include/linux/modversions.h -DKILLFASYNCHASTHREEPARAMETERS -I/usr/src/linux/include -c radeon_cp.c -o radeon_cp.o
+cc  -D__KERNEL__ -DMODULE -DCONFIG_MTRR -fomit-frame-pointer -DCONFIG_AGP -DCONFIG_AGP_MODULE -DMODVERSIONS -include /usr/src/linux/include/linux/modversions.h -DKILLFASYNCHASTHREEPARAMETERS -I/usr/src/linux/include -c radeon_state.c -o radeon_state.o
+radeon_state.c: In function `radeon_cp_clear':
+radeon_state.c:1199: warning: deprecated use of label at end of compound statement
+radeon_state.c: In function `radeon_cp_swap':
+radeon_state.c:1224: warning: deprecated use of label at end of compound statement
+radeon_state.c: In function `radeon_cp_vertex':
+radeon_state.c:1277: warning: deprecated use of label at end of compound statement
+radeon_state.c: In function `radeon_cp_indices':
+radeon_state.c:1340: warning: deprecated use of label at end of compound statement
+radeon_state.c: In function `radeon_cp_texture':
+radeon_state.c:1406: warning: deprecated use of label at end of compound statement
+radeon_state.c: In function `radeon_cp_stipple':
+radeon_state.c:1431: warning: deprecated use of label at end of compound statement
+radeon_state.c: In function `radeon_cp_indirect':
+radeon_state.c:1490: warning: deprecated use of label at end of compound statement
+ld -r radeon_drv.o radeon_cp.o radeon_state.o -o radeon.o

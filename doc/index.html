@@ -1,0 +1,394 @@
+<BODY BGCOLOR=FFFFFF>
+<CENTER>
+<IMG SRC="logo.jpg"><P>
+
+</CENTER>
+
+Introducing the fastest, most efficient way of getting 3D acceleration
+into your graphics, the <A HREF="http://dri.sourceforge.net">direct
+rendering infrastructure</A> for framebuffer consoles.<P>
+
+<BLOCKQUOTE>
+<LIST>
+
+<LI>FBDRI can run independant of any 2D windowing system.  You don't
+have to load 2D windowing and user interface code if you don't need
+it.</LI>
+
+<LI>OpenGL programs that use FBDRI instead of XF86DRI require much less
+memory since Xlib, the XServer, and all the X extensions are
+removed.</LI>
+
+<LI>FBDRI programs can have larger visuals and textures than X because
+no offscreen memory is reserved for anything else and we can easily
+kludge the memory manager.</LI>
+
+<LI>FBDRI can potentially be much easier to configure than X.  Although
+the current draft has a lot of hard coding, all you need to
+theoretically worry about is the framebuffer modeline and color
+depth.</LI>
+
+<LI>We can do lots of strange and unusual things much more easily under
+FBDRI than under X, like directly writing to texture memory over mmio,
+overlapping texture buffers to simulate more memory than we really
+have, implementing 2D windowing systems inside textures.</LI>
+
+</LIST>
+</BLOCKQUOTE>
+
+<HR><P>
+
+
+<H1>INTRODUCTION:</H1>
+
+FBDRI is an easy way to support 3D graphics in the Framebuffer console,
+yet it is not a new OpenGL implementation written from scratch.<P>
+
+Rather we reused the GLX and XF86DRI code and performed significant
+modifications to run it independantly of a 2D windowing system. 
+Despite the modifications, the reuse of XF86DRI makes it possible to
+support 3D in the framebuffer console shortly after any new X windows
+driver comes out.<P>
+
+
+Although the current FBDRI draft relies on SDL for visual
+initialization and user input, FBDRI is designed to function
+independant and parallel of the windowing system, thus there are no SDL
+dependancies in it.  You could easily write your own initialization
+calls to the framebuffer device and transfer control to pure FBDRI in
+less than 64k of memory.<P>
+
+
+<HR>
+
+
+
+<H1>INSTALLATION OF FBDRI:</H1>
+<P>
+
+Currently FBDRI only works with the following chipset:<P>
+
+<B>
+ATI Radeon with 64MB<BR>
+ATI Radeon with 32MB<BR>
+
+</B>
+<P>
+
+Since we're not planning to use any other chipset at the office,
+further ports would have to come from outside.<P>
+
+Either way, our installation directions are specific to <B>radeon</B>.<P>
+
+Sourcecode to download:<P>
+
+
+
+<A HREF="fbdri.082701.tar.bz2">FBDRI tarball</A><P>
+
+
+This contains an <B>SDL</B> and a <B>DRI</B> directory.  They should
+both get uncomressed side by side somewhere.  Then you should make in
+SDL and make in DRI.<P>
+
+Once the top level Makefiles are finished, go into
+<B>dri/os-support/linux/drm/kernel</B> and run <B>make</B> again.<P>
+
+So now you have four important objects:<P>
+
+<B>sdl/src/.libs/libSDL*</B> - SDL windowing system hacked for FBDRI.<BR>
+<B>dri/i686/libglfb.so</B> - OpenGL implementation using FBDRI.<BR>
+<B>dri/i686/kernel/radeonfb.o</B> - kernel framebuffer driver hacked to enable bus mastering.<BR>
+<B>dri/os-support/linux/drm/kernel/radeon.o</B> - kernel DRI/DRM driver hacked for FBDRI.<BR>
+<P>
+
+
+If it succeeded in building a test program, congratulations, otherwise
+you'll have to write your own test program.<P>
+
+To run the test program you need to load some kernel modules.<P>
+
+<B>insmod i686/kernel/radeonfb.o</B> This probably depends on packed
+pixel modules in your <B>/lib/modules</B> directory.  Obviously your
+kernel needs <B>support for framebuffer devices</B> enabled.<P>
+
+<B>insmod os-support/linux/drm/kernel/radeon.o</B><P>
+
+
+
+
+<P>
+
+Edit the LD_LIBRARY_PATH in <B>runtest</B> to
+point to your <B>sdl/src/.libs</B> and your <B>dri/i686</B>
+directories.  Then run <B>runtest</B> preferrably by remote login from
+another computer.<P>
+
+Hit a key to quit the program.  It doesn't restore the console so
+you'll have to reboot to get it back.<P>
+
+
+<P>
+
+<HR><P>
+
+<H1>CHANGES:</H1><P>
+
+<B>081201</B>: Initial release.  64MB Radeon only.<P>
+
+
+<B>082201</B>: This should theoretically support Radeons with 32MB as
+well as 64MB. C++ as well as C programs should now compile for FBDRI. Some
+functions not implemented in 081201 should now work. Also the waiting
+and cache flushing was disabled from the DRM kernel module. This speeds
+it up by 10% without appearing to cause any problems.<BR>
+
+
+
+
+
+
+<P>
+
+<HR><P>
+
+
+<H1>BUILDING FOR FBDRI:</H1>
+<P>
+
+
+If you plan to develop for FBDRI the include directories are different:<P>
+
+<B>sdl/include</B> - SDL header files<BR>
+<B>dri/include/GL</B> - OpenGL header files<BR>
+
+
+<P>
+You must use these include files instead of the traditional system
+includes because the SDL structures are different sizes to support
+FBDRI and the GL functions were mapped directly to FBDRI using macros,
+not assembly language symbol redirection like X Windows.<P>
+
+You must link the following libraries:<P>
+
+<B>dri/i686/libglfb.so</B><BR>
+<B>sdl/src/.libs/libSDL.so</B>
+
+<P>
+
+<HR><P>
+
+
+<H1>PORTING NOTES:</H1>
+<P>
+
+Unlike XF86DRI where you had a lot of functions to pointers indirecting
+95% of the calls, FBDRI ports should rely on symbol reuse.  Future
+FBDRI ports should rename the RADEON*, drmRadeon, etc calls to generic
+DRIVER, and drmDriver calls, thus by linking different object files for
+DRIVER and drmDriver functions you eliminate indirection and make the
+code much easier to read.  The <B>FBMesa</B> calls already do this.<P>
+
+
+
+
+<P>
+
+
+We've taken all the relevant DRI code from the XFree86 tree and
+assembled it in the dri directory.  A single top-level Makefile
+compiles everything in all the dri subdirectories except
+<B>os-support/linux/drm/kernel/</B>.<P>
+
+"FBDRI_Main *dpy" replaces all "Display *dpy" and most of the
+visual/screen/drawable instances for now.<P>
+
+Currently some of the variables are hard coded to speed up the FB
+porting.  Variables like PCI bus ID.<P>
+
+Wherever an X structure is needed, values are set in the FBDRI_Main
+structure, to be initialized in the FBDRIScreenInit command.  This is
+called by whatever initializes the framebuffer console, in our case
+SDL.<P>
+
+All X11 dependancies which can't be removed have to be implemented
+in the FBDRI_Main object.<P>
+
+Spagetti for sending requests to the X Server are gone.<P>
+
+Version checking is gone, probably to be reintroduced later.<P>
+
+The kernel level driver is straight from
+<B>xc/programs/Xserver/hw/xfree86/os-support/linux/drm/kernel</B>. 
+Minor changes are done to improve verbosity and work around some X
+Server dependancies.<P>
+
+<HR><P>
+
+<B>Mappings between the X11 dri directories and the FB dri directories.</B><P>
+
+
+We try to adhere to the original directory structure to minimize
+confusion.<P>
+
+
+<TABLE>
+
+<TR><TD>xc/include/GL            		   </TD><TD>-></TD><TD> include/GL<BR></TD></TR>
+<TR><TD>xc/extras/Mesa/include/GL   	   </TD><TD>-></TD><TD> include/GL<BR></TD></TR>
+<TR><TD>xc/lib/GL/dri            		   </TD><TD>-></TD><TD> lib/GL/dri<BR></TD></TR>
+<TR><TD>xc/lib/GL/glx            		   </TD><TD>-></TD><TD> lib/GL/glfb<BR></TD></TR>
+<TR><TD>xc/lib/GL/mesa/src/drv/  		   </TD><TD>-></TD><TD> lib/GL/mesa/src/drv/<BR></TD></TR>
+<TR><TD>xc/lib/GL/mesa/dri/      		   </TD><TD>-></TD><TD> lib/GL/mesa/dri<BR></TD></TR>
+<TR><TD>xc/programs/Xserver/hw/xfree86/os-support                  </TD><TD>-></TD><TD> os-support<BR></TD></TR>
+<TR><TD>xc/programs/Xserver/hw/xfree86/os-support/linux/drm/kernel </TD><TD>-></TD><TD> os-support/linux/drm/kernel<BR></TD></TR>
+<TR><TD>xc/programs/Xserver/hw/xfree86/drivers/ati                 </TD><TD>-></TD><TD> drivers/ati/<BR></TD></TR>
+<TR><TD>xc/programs/Xserver/GL/dri/        </TD><TD>-></TD><TD> dri/<BR></TD></TR>
+
+</TABLE>
+
+<P>
+
+You'll find that the driver specific definitions tend to stay in <P>
+
+<B>dri/lib/GL/mesa/src/drv</B> - user-space XF86DRI driver<P>
+<B>dri/os-support/linux/drm/kernel</B> - kernel-space XF86DRI driver<P>
+<B>dri/drivers/</B> - segments of the XFree86 2D driver required by DRI<P>
+<P>
+
+The dri source code documentation, except for the Jens Owen parts, is
+pretty bad, with many indirections making it hard to follow.  Most of
+the indirections should be eliminated in FB dri and a monolithic libglfb.so
+binary created for each card.<P>
+
+<HR><P>
+<B>Rough idea of the control flow in the X Server DRI:</B><P>
+
+
+<TT><PRE>
+X Server initialization calls this
+radeon_driver.c: RADEONScreenInit
+	radeon_dri.c: RADEONDRIScreenInit
+		dri.c: DRIScreenInit
+			dri.c: DRICreateContextPrivFromHandle
+		dri.c: RADEONDRIMapInit
+		dri.c: RADEONInitVisualConfigs
+
+
+SDL_video.c: SDL_SetVideoMode
+	SDL_x11video.c: X11_SetVideoMode
+		SDL_x11video.c: X11_CreateWindow
+			SDL_x11gl.c: X11_GL_CreateContext
+				glxcmds.c: CreateContext (glXCreateContext)
+					glxext.c: __glXInitialize
+						dri_glx.c: driCreateDisplay     // Bind the __driCreateScreen functions to pointers
+						glxext.c: AllocAndFetchScreenConfigs
+							dri_mesa.c: __driCreateScreen (createScreen)
+								dri_mesa.c: driMesaCreateScreen
+									radeon_xmesa.c: XMesaCreateVisual
+									radeon_xmesa.c: XMesaInitDriver
+										radeon_screen.c: radeonCreateScreen
+					dri_mesa.c: driMesaCreateContext (createContext)  // The dri context.
+						gl_create_context      // The mesa GL context inside the dri context
+						radeon_xmesa.c:  XMesaCreateContext (CreateContext)
+							radeon_context.c: radeonCreateContext
+	SDL_x11gl.c: X_GL_MakeCurrent (GL_MakeCurrent)
+		glxext.c: glXMakeCurrent
+			dri_mesa.c: driMesaBindContext
+				dri_mesa.c:driMesaCreateDrawable
+					radeon_xmesa.c: XMesaCreateWindowBuffer
+</PRE></TT>
+
+
+<B>Rough idea of the control flow in FB DRI.  Most of these calls should
+be direct:</B><P>
+
+
+<TT><PRE>
+
+SDL_video.c: SDL_SetVideoMode
+	SDL_fbvideo.c: FB_SetVideoMode
+
+		dri.c DRIExtensionInit
+		fbdrimain.c: FBDRIScreenInit
+			radeon_dri.c: RADEONPreInitDRI
+			radeon_dri.c: RADEONDRIScreenInit
+				dri.c: DRIScreenInit
+					dri.c: DRICreateContextPrivFromHandle
+				dri.c: RADEONDRIMapInit
+				dri.c: RADEONInitVisualConfigs
+			radeon_dri.c: RADEONDRITexturesInit
+			radeon_dri.c: RADEONDRIFinishScreenInit
+
+		glfbcmds.c: glFBCreateContext
+			glfbext.c: __glFBInitialize
+				dri_glfb.c: driCreateDisplay     // Bind the __driCreateScreen functions to pointers
+				glfbext.c: AllocAndFetchScreenConfigs
+					dri_mesa.c: __driCreateScreen (createScreen)
+						dri_mesa.c: driMesaCreateScreen
+							radeon_fbmesa.c: FBMesaCreateVisual
+							radeon_fbmesa.c: FBMesaInitDriver
+								radeon_screen.c: radeonCreateScreen
+			dri_mesa.c: driMesaCreateContext (createContext)  // The dri context.
+				gl_create_context      // The mesa GL context inside the dri context
+				radeon_fbmesa.c:  FBMesaCreateContext (CreateContext)
+					radeon_context.c: radeonCreateContext
+
+		glfbext.c: glFBMakeCurrent
+			dri_mesa.c: driMesaBindContext (bindContext)
+				dri_mesa.c:driMesaCreateDrawable
+					radeon_fbmesa.c: FBMesaCreateWindowBuffer
+				radeon_fbmesa.c: FBMesaMakeCurrent (MakeCurrent)
+					radeon_context.c: radeonMakeCurrent
+			glfbext.c: __glFBSetCurrentContext
+
+
+
+
+		radeon_driver.c: RADEONCloseScreen
+			radeon_dri.c: RADEONDRICloseScreen
+				dri.c: DRICloseScreen
+</PRE></TT>
+
+
+
+<HR>
+<B>Important structures in FB DRI and where they are:</B><P>
+
+
+
+glfbclient.h: GLFBcontext<BR>
+fbdrimain.h: FBDRI_Main<BR>
+
+<HR>
+<B>Some important files:</B><P>
+
+<TT><PRE>
+
+fbdri.c: These were previously client side requests in
+	lib/GL/dri/XF86dri.c, later received by a server side xf86dri.c and
+	then dispatched to pure DRI calls. These should be replaced by the
+	pure DRI calls.
+
+radeon_dri.c: Initializes the hardware.
+
+SDL_fbvideo.c: Initializes the function that initializes the hardware.
+
+glfbcmds.c, glfbext.c: Front end to the GL subsystem.  Functions
+usually start with "glFB"  Initializes the OpenGL specific stuff.
+
+dri_mesa.c: the front end to the front end of the GL subsystem.  Entry
+points used to initialize the system.  Functions usually start with
+"dri"
+
+radeon_fbmesa.c: Entry points initializing card specific portions of
+the DRI objects.  Usually start with "FBMesa"
+
+</PRE></TT>
+
+<HR><P>
+
+<A HREF="mailto:broadcast@earthling.net">Freakout address</A><P>
+
+
+<A HREF="https://sourceforge.net/projects/fbdri/">Sourceforget project page</A><P>

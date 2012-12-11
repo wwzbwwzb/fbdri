@@ -1,0 +1,172 @@
+if ! test -d i686/dri ; then mkdir -p i686/dri ; fi
+if ! test -d i686/drivers/ati ; then mkdir -p i686/drivers/ati ; fi
+if ! test -d i686/kernel ; then mkdir -p i686/kernel ; fi
+if ! test -d i686/os-support/linux/drm ; then mkdir -p i686/os-support/linux/drm ; fi
+if ! test -d i686/lib/GL/dri ; then mkdir -p i686/lib/GL/dri ; fi
+if ! test -d i686/lib/GL/glfb ; then mkdir -p i686/lib/GL/glfb ; fi
+if ! test -d i686/lib/GL/mesa/dri ; then mkdir -p i686/lib/GL/mesa/dri ; fi
+if ! test -d i686/lib/GL/mesa/src-glu ; then mkdir -p i686/lib/GL/mesa/src-glu ; fi
+if ! test -d i686/lib/GL/mesa/src/drv/common ; then mkdir -p i686/lib/GL/mesa/src/drv/common ; fi
+if ! test -d i686/lib/GL/mesa/src/drv/radeon ; then mkdir -p i686/lib/GL/mesa/src/drv/radeon ; fi
+gcc -c `cat i686/outputc_flags`  dri/dri.c -o i686/dri/dri.o
+gcc -c `cat i686/outputc_flags`  drivers/ati/radeon_accel.c -o i686/drivers/ati/radeon_accel.o
+gcc -c `cat i686/outputc_flags`  drivers/ati/radeon_dri.c -o i686/drivers/ati/radeon_dri.o
+gcc -c `cat i686/outputc_flags`  drivers/ati/radeon_driver.c -o i686/drivers/ati/radeon_driver.o
+gcc -c `cat i686/outputc_flags`  lib/GL/dri/dri_glfb.c -o i686/lib/GL/dri/dri_glfb.o
+gcc -c `cat i686/outputc_flags`  lib/GL/dri/fbdri.c -o i686/lib/GL/dri/fbdri.o
+gcc -c `cat i686/outputc_flags`  lib/GL/dri/fbdrimain.c -o i686/lib/GL/dri/fbdrimain.o
+gcc -c `cat i686/outputc_flags`  lib/GL/glfb/g_single.c -o i686/lib/GL/glfb/g_single.o
+gcc -c `cat i686/outputc_flags`  lib/GL/glfb/glfbcmds.c -o i686/lib/GL/glfb/glfbcmds.o
+gcc -c `cat i686/outputc_flags`  lib/GL/glfb/glfbext.c -o i686/lib/GL/glfb/glfbext.o
+gcc -c `cat i686/outputc_flags`  lib/GL/glfb/pixel.c -o i686/lib/GL/glfb/pixel.o
+gcc -c `cat i686/outputc_flags`  lib/GL/glfb/pixelstore.c -o i686/lib/GL/glfb/pixelstore.o
+lib/GL/glfb/pixelstore.c:11:6: warning: no newline at end of file
+gcc -c `cat i686/outputc_flags`  lib/GL/glfb/render2.c -o i686/lib/GL/glfb/render2.o
+lib/GL/glfb/render2.c:20:6: warning: no newline at end of file
+gcc -c `cat i686/outputc_flags`  lib/GL/glfb/vertarr.c -o i686/lib/GL/glfb/vertarr.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/dri/dri_mesa.c -o i686/lib/GL/mesa/dri/dri_mesa.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/aatriangle.c -o i686/lib/GL/mesa/src/aatriangle.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/accum.c -o i686/lib/GL/mesa/src/accum.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/alpha.c -o i686/lib/GL/mesa/src/alpha.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/alphabuf.c -o i686/lib/GL/mesa/src/alphabuf.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/attrib.c -o i686/lib/GL/mesa/src/attrib.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/bbox.c -o i686/lib/GL/mesa/src/bbox.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/bitmap.c -o i686/lib/GL/mesa/src/bitmap.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/blend.c -o i686/lib/GL/mesa/src/blend.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/buffers.c -o i686/lib/GL/mesa/src/buffers.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/clip.c -o i686/lib/GL/mesa/src/clip.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/colortab.c -o i686/lib/GL/mesa/src/colortab.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/config.c -o i686/lib/GL/mesa/src/config.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/context.c -o i686/lib/GL/mesa/src/context.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/copypix.c -o i686/lib/GL/mesa/src/copypix.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/cva.c -o i686/lib/GL/mesa/src/cva.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/debug_xform.c -o i686/lib/GL/mesa/src/debug_xform.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/depth.c -o i686/lib/GL/mesa/src/depth.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/dlist.c -o i686/lib/GL/mesa/src/dlist.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/drawpix.c -o i686/lib/GL/mesa/src/drawpix.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/enable.c -o i686/lib/GL/mesa/src/enable.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/enums.c -o i686/lib/GL/mesa/src/enums.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/eval.c -o i686/lib/GL/mesa/src/eval.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/extensions.c -o i686/lib/GL/mesa/src/extensions.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/feedback.c -o i686/lib/GL/mesa/src/feedback.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/fog.c -o i686/lib/GL/mesa/src/fog.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/get.c -o i686/lib/GL/mesa/src/get.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/glapi.c -o i686/lib/GL/mesa/src/glapi.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/hash.c -o i686/lib/GL/mesa/src/hash.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/hint.c -o i686/lib/GL/mesa/src/hint.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/image.c -o i686/lib/GL/mesa/src/image.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/imaging.c -o i686/lib/GL/mesa/src/imaging.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/light.c -o i686/lib/GL/mesa/src/light.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/lines.c -o i686/lib/GL/mesa/src/lines.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/logic.c -o i686/lib/GL/mesa/src/logic.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/masking.c -o i686/lib/GL/mesa/src/masking.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/matrix.c -o i686/lib/GL/mesa/src/matrix.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/mem.c -o i686/lib/GL/mesa/src/mem.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/mmath.c -o i686/lib/GL/mesa/src/mmath.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/pb.c -o i686/lib/GL/mesa/src/pb.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/pipeline.c -o i686/lib/GL/mesa/src/pipeline.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/pixel.c -o i686/lib/GL/mesa/src/pixel.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/pixeltex.c -o i686/lib/GL/mesa/src/pixeltex.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/points.c -o i686/lib/GL/mesa/src/points.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/polygon.c -o i686/lib/GL/mesa/src/polygon.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/quads.c -o i686/lib/GL/mesa/src/quads.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/rastpos.c -o i686/lib/GL/mesa/src/rastpos.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/readpix.c -o i686/lib/GL/mesa/src/readpix.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/rect.c -o i686/lib/GL/mesa/src/rect.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/scissor.c -o i686/lib/GL/mesa/src/scissor.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/shade.c -o i686/lib/GL/mesa/src/shade.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/span.c -o i686/lib/GL/mesa/src/span.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/stages.c -o i686/lib/GL/mesa/src/stages.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/state.c -o i686/lib/GL/mesa/src/state.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/stencil.c -o i686/lib/GL/mesa/src/stencil.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/texformat.c -o i686/lib/GL/mesa/src/texformat.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/teximage.c -o i686/lib/GL/mesa/src/teximage.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/texobj.c -o i686/lib/GL/mesa/src/texobj.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/texstate.c -o i686/lib/GL/mesa/src/texstate.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/texture.c -o i686/lib/GL/mesa/src/texture.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/texutil.c -o i686/lib/GL/mesa/src/texutil.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/translate.c -o i686/lib/GL/mesa/src/translate.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/triangle.c -o i686/lib/GL/mesa/src/triangle.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/varray.c -o i686/lib/GL/mesa/src/varray.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/vb.c -o i686/lib/GL/mesa/src/vb.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/vbcull.c -o i686/lib/GL/mesa/src/vbcull.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/vbfill.c -o i686/lib/GL/mesa/src/vbfill.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/vbindirect.c -o i686/lib/GL/mesa/src/vbindirect.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/vbrender.c -o i686/lib/GL/mesa/src/vbrender.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/vbxform.c -o i686/lib/GL/mesa/src/vbxform.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/vector.c -o i686/lib/GL/mesa/src/vector.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/vertices.c -o i686/lib/GL/mesa/src/vertices.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/winpos.c -o i686/lib/GL/mesa/src/winpos.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/xform.c -o i686/lib/GL/mesa/src/xform.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/zoom.c -o i686/lib/GL/mesa/src/zoom.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/drv/common/hwlog.c -o i686/lib/GL/mesa/src/drv/common/hwlog.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/drv/common/mm.c -o i686/lib/GL/mesa/src/drv/common/mm.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/drv/radeon/radeon_context.c -o i686/lib/GL/mesa/src/drv/radeon/radeon_context.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/drv/radeon/radeon_dd.c -o i686/lib/GL/mesa/src/drv/radeon/radeon_dd.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/drv/radeon/radeon_delay.c -o i686/lib/GL/mesa/src/drv/radeon/radeon_delay.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/drv/radeon/radeon_eltpath.c -o i686/lib/GL/mesa/src/drv/radeon/radeon_eltpath.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/drv/radeon/radeon_fastpath.c -o i686/lib/GL/mesa/src/drv/radeon/radeon_fastpath.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/drv/radeon/radeon_fbmesa.c -o i686/lib/GL/mesa/src/drv/radeon/radeon_fbmesa.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/drv/radeon/radeon_ioctl.c -o i686/lib/GL/mesa/src/drv/radeon/radeon_ioctl.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/drv/radeon/radeon_lock.c -o i686/lib/GL/mesa/src/drv/radeon/radeon_lock.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/drv/radeon/radeon_pipeline.c -o i686/lib/GL/mesa/src/drv/radeon/radeon_pipeline.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/drv/radeon/radeon_screen.c -o i686/lib/GL/mesa/src/drv/radeon/radeon_screen.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/drv/radeon/radeon_span.c -o i686/lib/GL/mesa/src/drv/radeon/radeon_span.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/drv/radeon/radeon_state.c -o i686/lib/GL/mesa/src/drv/radeon/radeon_state.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/drv/radeon/radeon_tex.c -o i686/lib/GL/mesa/src/drv/radeon/radeon_tex.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/drv/radeon/radeon_texmem.c -o i686/lib/GL/mesa/src/drv/radeon/radeon_texmem.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/drv/radeon/radeon_texstate.c -o i686/lib/GL/mesa/src/drv/radeon/radeon_texstate.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/drv/radeon/radeon_tris.c -o i686/lib/GL/mesa/src/drv/radeon/radeon_tris.o
+gcc -c `cat i686/mesac_flags`  lib/GL/mesa/src/drv/radeon/radeon_vb.c -o i686/lib/GL/mesa/src/drv/radeon/radeon_vb.o
+gcc -c `cat i686/outputc_flags`  os-support/linux/drm/fbdrm.c -o i686/os-support/linux/drm/fbdrm.o
+gcc -c `cat i686/outputc_flags`  os-support/linux/drm/fbdrmHash.c -o i686/os-support/linux/drm/fbdrmHash.o
+gcc -c `cat i686/outputc_flags`  os-support/linux/drm/fbdrmRadeon.c -o i686/os-support/linux/drm/fbdrmRadeon.o
+gcc -shared -o i686/libglfb.so `cat i686/objs` `cat i686/mesaobjs` `cat i686/tailobjs`
+i686/lib/GL/mesa/src/glapi.o(.data+0x0): multiple definition of `_glapi_Dispatch'
+i686/lib/GL/dri/fbdrimain.o(.data+0x0): first defined here
+i686/lib/GL/mesa/src/glapi.o(.data+0x4): multiple definition of `_glapi_Context'
+i686/lib/GL/dri/fbdrimain.o(.data+0x4): first defined here
+i686/lib/GL/mesa/src/glapi.o: In function `_glapi_add_entrypoint':
+i686/lib/GL/mesa/src/glapi.o(.text+0x0): multiple definition of `_glapi_add_entrypoint'
+i686/lib/GL/dri/fbdrimain.o(.text+0x124): first defined here
+/usr/bin/ld: Warning: size of symbol `_glapi_add_entrypoint' changed from 1 to 579 in i686/lib/GL/mesa/src/glapi.o
+i686/lib/GL/mesa/src/glapi.o: In function `_glapi_check_multithread':
+i686/lib/GL/mesa/src/glapi.o(.text+0x648): multiple definition of `_glapi_check_multithread'
+i686/lib/GL/dri/fbdrimain.o(.text+0xf8): first defined here
+i686/lib/GL/mesa/src/glapi.o: In function `_glapi_set_context':
+i686/lib/GL/mesa/src/glapi.o(.text+0x64c): multiple definition of `_glapi_set_context'
+i686/lib/GL/dri/fbdrimain.o(.text+0xec): first defined here
+i686/lib/GL/mesa/src/glapi.o: In function `_glapi_get_context':
+i686/lib/GL/mesa/src/glapi.o(.text+0x658): multiple definition of `_glapi_get_context'
+i686/lib/GL/dri/fbdrimain.o(.text+0x108): first defined here
+i686/lib/GL/mesa/src/glapi.o: In function `_glapi_set_dispatch':
+i686/lib/GL/mesa/src/glapi.o(.text+0x660): multiple definition of `_glapi_set_dispatch'
+i686/lib/GL/dri/fbdrimain.o(.text+0xfc): first defined here
+/usr/bin/ld: Warning: size of symbol `_glapi_set_dispatch' changed from 1 to 20 in i686/lib/GL/mesa/src/glapi.o
+i686/lib/GL/mesa/src/glapi.o: In function `_glapi_get_dispatch_table_size':
+i686/lib/GL/mesa/src/glapi.o(.text+0x67c): multiple definition of `_glapi_get_dispatch_table_size'
+i686/lib/GL/dri/fbdrimain.o(.text+0x100): first defined here
+/usr/bin/ld: Warning: size of symbol `_glapi_get_dispatch_table_size' changed from 6 to 14 in i686/lib/GL/mesa/src/glapi.o
+collect2: ld returned 1 exit status
+make: [i686/libglfb.so] Error 1 (ignored)
+gcc -c -o i686/kernel/radeonfb.o  kernel/radeonfb.c \
+	 -D__KERNEL__ -I/usr/src/linux/include \
+	 -Ikernel \
+	 -Wall -Wstrict-prototypes -Wno-trigraphs -O2 \
+	 -fomit-frame-pointer -fno-strict-aliasing -fno-common \
+	 -pipe -mpreferred-stack-boundary=2 -march=i686 -DMODULE \
+	 -DMODVERSIONS -include \
+	 /usr/src/linux/include/linux/modversions.h
+kernel/radeonfb.c:1878: warning: `fbcon_radeon_clear' defined but not used
+gcc -c `cat i686/testc_flags`  testyuv.c -o i686/testyuv.o
+gcc -o i686/testyuv i686/testyuv.o -Li686 -L/usr/src/sdl/src/.libs -lglfb -lSDL -lpthread -lm -lpng -ldl -lglib -lquicktime
+/usr/bin/ld: cannot find -lglfb
+collect2: ld returned 1 exit status
+make: [i686/testyuv] Error 1 (ignored)
+gcc -c `cat i686/testc_flags`  animation.c -o i686/animation.o
+animation.c: In function `init_texture':
+animation.c:1029: warning: initialization makes pointer from integer without a cast
+gcc -o i686/animation i686/animation.o -Li686 -L/usr/src/sdl/src/.libs -lglfb -lSDL -lpthread -lm -lpng -ldl -lglib -lquicktime
+/usr/bin/ld: cannot find -lglfb
+collect2: ld returned 1 exit status
+make: [i686/animation] Error 1 (ignored)

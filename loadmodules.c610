@@ -1,0 +1,10 @@
+/sbin/rmmod radeon
+
+/sbin/insmod agpgart agp_try_unsupported=1
+/sbin/insmod fbcon-cfb8
+/sbin/insmod fbcon-cfb16
+/sbin/insmod fbcon-cfb32
+/sbin/insmod /usr/src/dri/`arch`/kernel/radeonfb.o
+/sbin/insmod /usr/src/dri/os-support/linux/drm/kernel/radeon.o
+#fbset 640x480-100
+#fbset 800x600-100

@@ -1,0 +1,989 @@
+#include "GL/gl.h"
+#include "SDL.h"
+
+#include <math.h>
+#include <png.h>
+#include <pthread.h>
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/time.h>
+#include <unistd.h>
+
+
+#ifdef HAVE_MOVIE
+#include <quicktime.h>
+#include <colormodels.h>
+#endif
+
+#define MOVIE_FILE "/home/movie.mov"
+#define BLANK_TEXTURE "blank2048.png"
+#define TEXTURE_FILE "test_2048.png"
+//#define TEXTURE_FILE "test_1024.png"
+//#define TEXTURE_FILE "test_512.png"
+
+enum
+{
+	OPERATION_NONE,
+	OPERATION_TEXTURE
+};
+
+static unsigned long texture_offsets[] = 
+{
+	0x2000000,
+	0x3000000
+};
+
+static int resolutions[][2] =
+{
+    1920, 1080,
+	1280, 1024,
+	1024, 768,
+	640, 480
+};
+
+#define FUNCTIONS 4
+#define CUBE_WIDTH (float)16
+#define CUBE_HEIGHT (float)9
+#define CUBE_DEPTH (float)0.5
+#define FREQUENCY 1.0
+// Should be an integer multiple of the cube dimensions
+#define XRESOLUTION 128      // Equilateral triangles require 2 * w
+#define YRESOLUTION 36     
+#define X_OFFSET (-CUBE_WIDTH / 2)
+#define Y_OFFSET (-CUBE_HEIGHT / 2)
+#define TOTAL_FRAMES 64
+#define MAX_FRAMES 128
+#define TEXTURE_SIZE 2048
+#define TEXTURE_COUNT 1
+#define MOVIE_W 1920
+#define MOVIE_H 1080
+// Since the triangle centers not the vertices are bound by cube dimensions,
+// need to pad the sides
+#define MOVIE_XMARGIN ((float)0.0)     // Triangles from edge to keep movie
+#define MOVIE_YMARGIN ((float)0.5)     // Triangles from edge to keep movie
+#define VIEWPORT_CMODEL BC_YUV422
+#define TEMP_CMODEL BC_YUV420P
+
+
+
+
+typedef struct
+{
+	struct timeval start_time;
+	struct timeval last_time;
+	int64_t frames;
+} status_t;
+
+
+typedef struct
+{
+	float x, y, z;
+} vector_t;
+
+
+typedef struct
+{
+	vector_t point[3];
+	vector_t texture_coord[3];
+	vector_t normal;
+} triangle_t;
+
+
+
+typedef struct
+{
+	triangle_t *triangles;
+	long total_triangles;
+} animation_frame_t;
+
+
+
+typedef struct
+{
+	SDL_Surface *screen;
+	int w, h;
+	int done;
+	
+	float xrot, yrot, xrot_start, yrot_start, zoom, zoom_start;
+	SDLKey key_pressed;
+	int cursor_x, cursor_y;
+	int which_button;
+	int last_x, last_y;
+	int button_down;
+	int current_frame;
+	int current_movie_frame;
+	int total_frames;
+	animation_frame_t *animation;
+	int frame_step;
+	int function;
+	int do_movie;
+	int do_texture;
+	int current_operation;
+	int texture_w, texture_h;
+	int current_texture;
+	GLuint texture[TEXTURE_COUNT];
+	unsigned char *movie_data;
+	int frame_size;
+	status_t status;
+	float amplitude;
+	float frequency;
+} viewport_t;
+
+
+
+
+
+static void init_status(status_t *status)
+{
+	gettimeofday(&status->start_time, 0);
+	gettimeofday(&status->last_time, 0);
+	status->frames = 0;
+}
+
+static void update_status(status_t *status)
+{
+	struct timeval new_time;
+	double new_seconds;
+	double old_seconds;
+	gettimeofday(&new_time, 0);
+	
+	new_seconds = (double)new_time.tv_sec + (double)new_time.tv_usec / 1000000;
+	old_seconds = (double)status->start_time.tv_sec + (double)status->start_time.tv_usec / 1000000;
+
+	if(new_seconds - old_seconds > 5)
+	{
+		fprintf(stderr, "      %lld frames/sec      \r", 
+			(int64_t)((double)status->frames / 
+				(new_seconds - old_seconds)));
+		status->start_time = new_time;
+		status->frames = 0;
+		fflush(stdout);
+		status->last_time = new_time;
+	};
+}
+
+static void stop_status()
+{
+	fprintf(stderr, "\n\n");
+}
+
+
+
+static void normalize(vector_t *out)
+{
+	float length = sqrt(out->x * out->x +
+		out->y * out->y +
+		out->z * out->z);
+
+	if(fabs(length) < 0.001) length = 1.0;
+	
+	out->x /= length;
+	out->y /= length;
+	out->z /= length;
+}
+
+
+static void calc_normal(vector_t *out, 
+	vector_t *in1, 
+	vector_t *in2, 
+	vector_t *in3)
+{
+	vector_t v1, v2;
+
+	v1.x = in1->x - in2->x;
+	v1.y = in1->y - in2->y;
+	v1.z = in1->z - in2->z;
+
+	v2.x = in2->x - in3->x;
+	v2.y = in2->y - in3->y;
+	v2.z = in2->z - in3->z;
+
+	out->x = v1.y * v2.z - v1.z * v2.y;
+	out->y = v1.z * v2.x - v1.x * v2.z;
+	out->z = v1.x * v2.y - v1.y * v2.x;
+
+	normalize(out);
+}
+
+static GLfloat sinc(float x, float phase)
+{
+	float result;
+	if(fabs(x) < 0.00001)
+		result = phase > M_PI ? -2000 : 2000;
+	else
+		result = cos(x + phase) / x;
+
+	if(result > 5) result = 5;
+	if(result < -5) result = -5;
+	return result * 6;
+}
+
+static float sinc3(float x, float y, float phase)
+{
+	return sinc(sqrt(x * x + y * y), phase);
+}
+
+static float sin3(float x, float y, float phase)
+{
+	return cos(sqrt(x * x + y * y) + phase);
+}
+
+
+static void calc_triangle(viewport_t *viewport,
+	triangle_t *triangle, 
+	float x, 
+	float y, 
+	int column, 
+	int row,
+	int frame)
+{
+	int direction, i;
+// Since the center of each triangle in the horizontal direction is 1/2 the distance
+// between 1 / XRESOLUTION double the width.
+	float width = (float)CUBE_WIDTH / XRESOLUTION * 2;
+	float height = (float)CUBE_HEIGHT / YRESOLUTION;
+
+	if(row & 0x1)
+	{
+		if(column & 0x1)
+		{
+			direction = 1;
+		}
+		else
+		{
+			direction = 0;
+		}
+	}
+	else
+	{
+		if(column & 0x1)
+		{
+			direction = 0;
+		}
+		else
+		{
+			direction = 1;
+		}
+	}
+
+// Down
+	if(direction)
+	{
+		triangle->point[0].x = x - width / 2;
+		triangle->point[0].y = y + height / 2;
+		if(triangle->point[0].x < X_OFFSET) 
+			triangle->point[0].x = X_OFFSET;
+		
+		triangle->point[1].x = x;
+		triangle->point[1].y = y - height / 2;
+		triangle->point[2].x = x + width / 2;
+		triangle->point[2].y = y + height / 2;
+		if(triangle->point[2].x > CUBE_WIDTH + X_OFFSET - width / 2) 
+			triangle->point[2].x = CUBE_WIDTH + X_OFFSET - width / 2;
+	}
+	else
+// Up
+	{
+		triangle->point[0].x = x;
+		triangle->point[0].y = y + height / 2;
+		triangle->point[1].x = x - width / 2;
+		triangle->point[1].y = y - height / 2;
+		if(triangle->point[1].x < X_OFFSET) 
+			triangle->point[1].x = X_OFFSET;
+		triangle->point[2].x = x + width / 2;
+		triangle->point[2].y = y - height / 2;
+		if(triangle->point[2].x > CUBE_WIDTH + X_OFFSET - width / 2) 
+			triangle->point[2].x = CUBE_WIDTH + X_OFFSET - width / 2;
+	}
+
+
+// Calculate Z and texture coords
+	for(i = 0; i < 3; i++)
+	{
+		triangle->texture_coord[i].x = 
+			(triangle->point[i].x - X_OFFSET) / 
+			(CUBE_WIDTH - MOVIE_XMARGIN * width) *
+			(float)MOVIE_W / 
+			TEXTURE_SIZE;
+		triangle->texture_coord[i].y = 
+			(CUBE_HEIGHT - 
+				(triangle->point[i].y - Y_OFFSET + MOVIE_YMARGIN * height)) / 
+			CUBE_HEIGHT *
+			(float)MOVIE_H / 
+			TEXTURE_SIZE;
+
+
+		switch(viewport->function)
+		{
+			case 0:
+				triangle->point[i].z = sinc3(triangle->point[i].x * viewport->frequency, 
+						triangle->point[i].y * viewport->frequency,
+ 						2.0 * M_PI - (float)frame / viewport->total_frames * 2 * M_PI) * 
+					(float)viewport->amplitude;
+				break;
+			case 1:
+				triangle->point[i].z = sin3(triangle->point[i].x * viewport->frequency, 
+						triangle->point[i].y * viewport->frequency,
+						2.0 * M_PI - (float)frame / viewport->total_frames * 2 * M_PI) * 
+					(float)viewport->amplitude;
+				break;
+			case 2:
+				triangle->point[i].z = cos(triangle->point[i].x * viewport->frequency +
+						2.0 * M_PI - (float)frame / viewport->total_frames * 2 * M_PI) * 
+					(float)viewport->amplitude;
+				break;
+			case 3:
+				triangle->point[i].z = cos(triangle->point[i].y * viewport->frequency +
+						2.0 * M_PI - (float)frame / viewport->total_frames * 2 * M_PI) * 
+					(float)viewport->amplitude;
+				break;
+		}
+	}
+
+	calc_normal(&triangle->normal, 
+		&triangle->point[0], 
+		&triangle->point[1], 
+		&triangle->point[2]);
+}
+
+
+static void init_animation(viewport_t *viewport)
+{
+	int i, j, k;
+	if(viewport->function >= FUNCTIONS) viewport->function = 0;
+	if(viewport->function < 0) viewport->function = FUNCTIONS - 1;
+	
+	if(!viewport->animation)
+		viewport->animation = calloc(1, 
+			sizeof(animation_frame_t) * viewport->total_frames);
+
+	for(i = 0; i < viewport->total_frames; i++)
+	{
+		animation_frame_t *animation = &viewport->animation[i];
+
+		animation->total_triangles = XRESOLUTION * YRESOLUTION;
+		if(!animation->triangles)
+			animation->triangles = calloc(1, sizeof(triangle_t) * animation->total_triangles);
+
+		for(j = 0; j < YRESOLUTION; j++)
+		{
+			for(k = 0; k < XRESOLUTION; k++)
+			{
+				calc_triangle(viewport,
+					&animation->triangles[j * XRESOLUTION + k], 
+					(float)k / XRESOLUTION * CUBE_WIDTH + X_OFFSET, 
+					(float)j / YRESOLUTION * CUBE_HEIGHT + Y_OFFSET,
+					k,
+					j,
+					i);
+			}
+		}
+	}
+
+}
+
+
+static viewport_t* new_viewport()
+{
+	viewport_t *result = (viewport_t *)calloc(sizeof(viewport_t), 1);
+	int i;
+
+
+	return result;
+}
+
+static void init_window(viewport_t *viewport)
+{
+	int i;
+	if(SDL_Init(SDL_INIT_VIDEO))
+	{
+		fprintf(stderr, "new_viewport: SDL_Init: %s.\n", SDL_GetError());
+		exit(1);
+	}
+
+	for(i = 0; i < sizeof(resolutions) / sizeof(int*); i++)
+	{
+		viewport->w = resolutions[i][0];
+		viewport->h = resolutions[i][1];
+		
+		fprintf(stderr, "new_viewport: trying %dx%d.\n", viewport->w, viewport->h);
+
+		if((viewport->screen = SDL_SetVideoMode(viewport->w, 
+			viewport->h, 
+			32,
+			(SDL_OPENGL|SDL_ANYFORMAT|SDL_DOUBLEBUF))))
+		{
+			break;
+		}
+		else
+		{
+			fprintf(stderr, "new_viewport: SDL_SetVideoMode: %s.\n", SDL_GetError());
+		}
+	}
+		
+
+	if(!viewport->screen)
+	{
+		fprintf(stderr, "new_viewport: SDL_SetVideoMode: %s.\n", SDL_GetError());
+		exit(1);
+	}
+}
+
+void viewport_set_done(viewport_t *viewport)
+{
+	SDL_Event event;
+	viewport->done = 1;
+
+	event.type = SDL_QUIT;
+	SDL_PushEvent(&event);
+	stop_status();
+}
+
+int keypress_event(viewport_t *viewport)
+{
+//	printf("Key pressed: %x\n", viewport->key_pressed);
+
+	switch(viewport->key_pressed)
+	{
+		case 't':
+			if(viewport->current_operation == OPERATION_NONE)
+			{
+				if(viewport->do_texture || viewport->do_movie)
+					viewport->current_operation = OPERATION_TEXTURE;
+			}
+			else
+				viewport->current_operation = OPERATION_NONE;
+			break;
+	
+		case 0x3d:
+			viewport->frequency += 1.0;
+			init_animation(viewport);
+			break;
+		
+		case 0x2d:
+			viewport->frequency -= 1.0;
+			init_animation(viewport);
+			break;
+	
+		case 0x111:
+			viewport->amplitude += 0.5;
+			init_animation(viewport);
+			break;
+		
+		case 0x112:
+			viewport->amplitude -= 0.5;
+			init_animation(viewport);
+			break;
+	
+		case 0x113:
+			viewport->function++;
+			init_animation(viewport);
+			break;
+		
+		case 0x114:
+			viewport->function--;
+			init_animation(viewport);
+			break;
+		
+		case 0x1b:
+			viewport_set_done(viewport);
+	}
+	return 1;
+};
+
+
+int button_press(viewport_t *viewport)
+{
+	viewport->zoom_start = viewport->zoom;
+	viewport->xrot_start = viewport->xrot;
+	viewport->yrot_start = viewport->yrot;
+	viewport->last_x = viewport->cursor_x;
+	viewport->last_y = viewport->cursor_y;
+	return 1;
+};
+
+int cursor_motion(viewport_t *viewport)
+{
+	if(viewport->button_down)
+	{
+		if(viewport->which_button == 1)
+		{
+			viewport->zoom = viewport->zoom_start + (float)(viewport->cursor_y - viewport->last_y) / 8;
+		}
+		else
+		{
+			viewport->xrot = viewport->xrot_start + (float)(viewport->cursor_x - viewport->last_x);
+			viewport->yrot = viewport->yrot_start + (float)(viewport->cursor_y - viewport->last_y);
+		}
+		return 1;
+	}
+};
+
+void* viewport_loop(void *ptr)
+{
+	viewport_t *viewport = (viewport_t *)ptr;
+	SDL_Event event;
+
+//printf("viewport_loop 1\n");
+	while(!viewport->done)
+	{
+		int result = !SDL_WaitEvent(&event);
+//printf("viewport_loop 2\n");
+
+		if(result) viewport->done = 1;
+
+		switch(event.type)
+		{
+			case SDL_KEYDOWN:
+			{
+				viewport->key_pressed = event.key.keysym.sym;
+				keypress_event(viewport);
+//				viewport_set_done(viewport);
+				break;
+			}
+
+       		case SDL_MOUSEMOTION:
+			{
+				SDL_MouseMotionEvent *mouse_event = (SDL_MouseMotionEvent*)&event;
+				viewport->cursor_x = mouse_event->x;
+				viewport->cursor_y = mouse_event->y;
+				cursor_motion(viewport);
+				break;
+			}
+
+       		case SDL_MOUSEBUTTONDOWN:
+			{
+				SDL_MouseButtonEvent *mouse_event = (SDL_MouseButtonEvent*)&event;
+				viewport->which_button = mouse_event->button - 1;
+				viewport->button_down = 1;
+				button_press(viewport);
+				break;
+			}
+
+       		case SDL_MOUSEBUTTONUP:
+				viewport->button_down = 0;
+				break;
+
+			case SDL_QUIT:
+				viewport->done = 1;
+				break;
+		}
+	}
+}
+
+
+int get_next_texture(viewport_t *viewport)
+{
+	int next_texture = viewport->current_texture + 1;
+	if(next_texture >= TEXTURE_COUNT) next_texture = 0;
+	return next_texture;
+}
+
+void draw_thing(viewport_t *viewport)
+{
+	animation_frame_t *animation = &viewport->animation[viewport->current_frame];
+	int i, j, k;
+
+	glColor4f(1.0, 1.0, 1.0, 1.0);
+
+	if((viewport->do_movie || viewport->do_texture) && 
+		viewport->current_operation != OPERATION_NONE)
+	{
+    	glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, viewport->texture[viewport->current_texture]);
+	}
+
+
+
+#if 0
+	glBegin(GL_TRIANGLES);
+
+	for(i = 0; i < animation->total_triangles; i++)
+	{
+		triangle_t *triangle = &animation->triangles[i];
+
+		glNormal3f(triangle->normal.x, triangle->normal.y, triangle->normal.z);
+
+		if((viewport->do_movie || viewport->do_texture) && 
+			viewport->current_operation != OPERATION_NONE) 
+			glTexCoord2f(triangle->texture_coord[0].x, triangle->texture_coord[0].y);
+		glVertex3f(triangle->point[0].x, triangle->point[0].y, triangle->point[0].z);
+
+		if((viewport->do_movie || viewport->do_texture) && 
+			viewport->current_operation != OPERATION_NONE)
+			glTexCoord2f(triangle->texture_coord[1].x, triangle->texture_coord[1].y);
+		glVertex3f(triangle->point[1].x, triangle->point[1].y, triangle->point[1].z);
+
+		if((viewport->do_movie || viewport->do_texture) && 
+			viewport->current_operation != OPERATION_NONE)
+			glTexCoord2f(triangle->texture_coord[2].x, triangle->texture_coord[2].y);
+		glVertex3f(triangle->point[2].x, triangle->point[2].y, triangle->point[2].z);
+	}
+
+	glEnd();
+
+#endif
+
+	glBegin(GL_QUADS);
+	
+	glNormal3f(0.0, 0.0, 1.0);
+	glTexCoord2f((float)MOVIE_W / TEXTURE_SIZE, 0.0);   
+	glVertex3f(CUBE_WIDTH / 2, CUBE_HEIGHT / 2, CUBE_DEPTH / 2);
+
+	glTexCoord2f(0.0, 0.0);   
+	glVertex3f(-CUBE_WIDTH / 2, CUBE_HEIGHT / 2, CUBE_DEPTH / 2);
+
+	glTexCoord2f(0.0, (float)MOVIE_H / TEXTURE_SIZE);   
+	glVertex3f(-CUBE_WIDTH / 2, -CUBE_HEIGHT / 2, CUBE_DEPTH / 2);
+
+	glTexCoord2f((float)MOVIE_W / TEXTURE_SIZE, (float)MOVIE_H / TEXTURE_SIZE);   
+	glVertex3f(CUBE_WIDTH / 2, -CUBE_HEIGHT / 2, CUBE_DEPTH / 2);
+
+	glEnd();
+
+	
+	glDisable(GL_TEXTURE_2D);
+}
+
+void texture_iterate(viewport_t *viewport)
+{
+	unsigned char *in_rows[3], **out_rows;
+	int i, j;
+	int next_texture = get_next_texture(viewport);
+
+//printf("texture_iterate 1\n");
+	if(!viewport->do_movie) return;
+//printf("texture_iterate 2\n");
+
+#ifdef HAVE_MOVIE
+//printf("texture_iterate 3\n");
+	in_rows[0] = viewport->movie_data + 
+			viewport->frame_size * 
+			viewport->current_movie_frame;
+	in_rows[1] = in_rows[0] + 
+			MOVIE_W * MOVIE_H;
+	in_rows[2] = in_rows[1] + 
+			MOVIE_W * MOVIE_H / 4;
+
+
+
+	out_rows = calloc(1, sizeof(unsigned char*) * MOVIE_H);
+	for(i = 0; i < MOVIE_H; i++)
+	{
+		out_rows[i] = (unsigned char*)viewport->screen->pixels + 
+			texture_offsets[next_texture] +
+			TEXTURE_SIZE * cmodel_calculate_pixelsize(VIEWPORT_CMODEL) * i;
+	}
+
+
+// Hard code transfer for Radeon byte order
+	for(i = 0; i < MOVIE_H; i++)
+	{
+		unsigned char *out_row = out_rows[i];
+		unsigned char *in_row[3];
+		
+		in_row[0] = in_rows[0] + i * MOVIE_W;
+		in_row[1] = in_rows[1] + (i / 2) * (MOVIE_W / 2);
+		in_row[2] = in_rows[2] + (i / 2) * (MOVIE_W / 2);
+		
+		for(j = 0; j < MOVIE_W / 2; j++)
+		{
+			*out_row++ = *in_row[0]++;   // Y
+			*out_row++ = *in_row[1]++;   // U
+			*out_row++ = *in_row[0]++;   // Y
+			*out_row++ = *in_row[2]++;   // V
+		}
+	}
+
+	free(out_rows);
+#endif
+}
+
+void viewport_draw(viewport_t *viewport)
+{
+	if(viewport->do_movie && viewport->current_operation != OPERATION_NONE) texture_iterate(viewport);
+
+    glClearColor(0.0, 0.0, 1.0, 1.0);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+ 	glPushMatrix();
+	glTranslatef(0.0, 0.0, viewport->zoom);
+	glRotatef(viewport->xrot, 0, 1, 0);
+	glRotatef(viewport->yrot, 1, 0, 0);
+
+	draw_thing(viewport);
+
+
+
+	glFlush();
+    glPopMatrix();
+  	SDL_GL_SwapBuffers();
+
+
+	viewport->current_texture = get_next_texture(viewport);
+	viewport->current_frame++;
+	viewport->current_movie_frame += viewport->frame_step;
+	if(viewport->current_frame >= viewport->total_frames)
+		viewport->current_frame = 0;
+	viewport->status.frames++;
+	update_status(&viewport->status);
+
+
+//	if(!viewport->button_down) viewport->xrot += 0.1;
+	
+	if(viewport->frame_step > 0)
+	{
+		if(viewport->current_movie_frame >= viewport->total_frames - 1)
+		{
+			viewport->frame_step = -1;
+		}
+	}
+	else
+	{
+		if(viewport->current_movie_frame <= 0)
+		{
+			viewport->frame_step = 1;
+		}
+	}
+};
+
+
+
+
+
+
+
+
+void init_movie(viewport_t *viewport)
+{
+#ifdef HAVE_MOVIE
+	quicktime_t *movie;
+	unsigned char *row_pointers[3];
+	int i, j, w, h;
+
+
+	if(!(movie = quicktime_open(MOVIE_FILE, 1, 0)))
+	{
+		printf("Couldn't open movie file %s.\n", MOVIE_FILE);
+		viewport->do_movie = 0;
+		return;
+	}
+	viewport->do_movie = 1;
+
+	w = quicktime_video_width(movie, 0);
+	h = quicktime_video_height(movie, 0);
+	viewport->frame_size = MOVIE_W * MOVIE_H +
+		MOVIE_W * MOVIE_H / 2;
+	viewport->total_frames = quicktime_video_length(movie, 0);
+	if(viewport->total_frames > MAX_FRAMES) viewport->total_frames = MAX_FRAMES;
+
+
+
+//	if(viewport->total_frames > TOTAL_FRAMES) viewport->total_frames = TOTAL_FRAMES;
+	viewport->movie_data = calloc(1, viewport->frame_size * viewport->total_frames);
+
+	for(i = 0; i < viewport->total_frames; i++)
+	{
+printf("Loading frame %d\r", i, viewport->frame_size, viewport->total_frames, viewport->movie_data);
+fflush(stdout);
+		row_pointers[0] = viewport->movie_data + 
+			viewport->frame_size * 
+			i;
+		row_pointers[1] = row_pointers[0] + 
+			MOVIE_W * MOVIE_H;
+		row_pointers[2] = row_pointers[1] + 
+			MOVIE_W * MOVIE_H / 4;
+
+		quicktime_decode_scaled(movie, 
+			0,                    /* Location of input frame to take picture */
+			0,
+			w,
+			h,
+			MOVIE_W,                   /* Dimensions of output frame */
+			MOVIE_H,
+			TEMP_CMODEL,             /* One of the color models defined above */
+			row_pointers, 
+			0);
+		
+		
+		for(j = 0; j < MOVIE_W * MOVIE_H / 4; j++)
+		{
+			row_pointers[1][j] -= 0x10;
+			row_pointers[2][j] -= 0x10;
+		}
+	}
+
+	quicktime_close(movie);
+#endif
+}
+
+
+
+void init_texture(viewport_t *viewport)
+{
+	png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
+	png_infop info_ptr = png_create_info_struct(png_ptr);
+	FILE *fd = viewport->do_movie ? 
+		fopen(BLANK_TEXTURE, "rb") : 
+		fopen(TEXTURE_FILE, "rb");
+	unsigned char **row_pointers;
+	unsigned char *data;
+	int color_model;
+	int i;
+
+	if(!fd)
+	{
+		printf("Couldn't open png texture file %s.\n", TEXTURE_FILE);
+		viewport->do_texture = 0;
+		return;
+	}
+//viewport->do_texture = 0;
+//return;
+
+printf("Loading texture %s\r", TEXTURE_FILE);
+fflush(stdout);
+	viewport->do_texture = 1;
+	png_init_io(png_ptr, fd);
+	png_read_info(png_ptr, info_ptr);
+	viewport->texture_w = png_get_image_width(png_ptr, info_ptr);
+	viewport->texture_h = png_get_image_height(png_ptr, info_ptr);
+	color_model = png_get_color_type(png_ptr, info_ptr);
+	row_pointers = (unsigned char**)calloc(1, sizeof(png_bytep) * viewport->texture_h);
+	data = (unsigned char*)calloc(1, viewport->texture_w * viewport->texture_h * 3);
+	for(i = 0; i < viewport->texture_h; i++) row_pointers[i] = data + viewport->texture_w * 3 * i;
+	png_read_image(png_ptr, row_pointers);
+
+
+
+
+
+
+
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+	for(i = 0; i < TEXTURE_COUNT; i++)
+	{
+		glGenTextures(1, &viewport->texture[i]);
+		glBindTexture(GL_TEXTURE_2D, viewport->texture[i]);
+//		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+//		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+//		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+//		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
+		glTexImage2D(GL_TEXTURE_2D, 
+			0, 
+			GL_RGB, 
+			viewport->texture_w,
+        	viewport->texture_h, 
+			0, 
+			GL_RGB, 
+			GL_UNSIGNED_BYTE,
+        	row_pointers[0]);
+	}
+
+
+
+
+
+	png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
+	free(row_pointers);
+	free(data);
+	fclose(fd);
+}
+
+
+
+int main()
+{
+	viewport_t *viewport;
+    static GLfloat light_position[] = { 5.0, 5.0, 10.0, 0.0 };
+    static GLfloat diffuse_light[] = { 1.0, 1.0, 1.0, 1.0 };
+	static GLfloat ambient_light[] = { 0.0, 0.0, 0.0, 0.0 };
+	pthread_attr_t  attr;
+	pthread_t tid;
+	GLfloat ratio;
+	
+	viewport = new_viewport();
+	init_window(viewport);
+	viewport->xrot = -20.0;
+	viewport->yrot = -30.0;
+	viewport->zoom = -40.0;
+	viewport->frame_step = 1;
+	viewport->amplitude = CUBE_DEPTH;
+	viewport->frequency = FREQUENCY;
+	viewport->current_operation = OPERATION_NONE;
+	viewport->total_frames = TOTAL_FRAMES;
+
+  	glViewport(0, 0, viewport->w, viewport->h);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+  	ratio = (GLfloat)viewport->h / (GLfloat)viewport->w;
+ 	glFrustum(-1.0, 
+		1.0, 
+		-ratio, 
+		ratio, 
+		5.0, 
+		600.0);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+//	glEnable(GL_CULL_FACE);
+//	glShadeModel(GL_SMOOTH);
+	glEnable(GL_DEPTH_TEST);
+    glEnable(GL_LIGHT0);
+    glEnable(GL_LIGHTING);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse_light);
+    glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+
+
+
+	glEnable(GL_COLOR_MATERIAL);
+	glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
+	init_movie(viewport);
+	init_texture(viewport);
+	init_animation(viewport);
+
+// Exclusive operations
+	if(viewport->do_movie) viewport->do_texture = 0;
+
+	pthread_attr_init(&attr);
+	pthread_create(&tid, &attr, viewport_loop, viewport);
+	
+	printf("\n\n\n\n3D geometry meets OpenGL\n");
+	printf("(c) 2001 Adam Williams\n");
+
+	if(viewport->do_movie)
+	{
+		printf("t -> toggle movie on and off\n");
+		viewport->current_operation = OPERATION_TEXTURE;
+	}
+
+	if(viewport->do_texture)
+	{
+		printf("t -> toggle texture on and off\n");
+		viewport->current_operation = OPERATION_TEXTURE;
+	}
+
+	printf("+ -> increase frequency\n");
+	printf("- -> decrease frequency\n");
+	printf("Up arrow -> increase amplitude\n");
+	printf("Down arrow -> decrease amplitude\n");
+	printf("Right arrow -> next function\n");
+	printf("Left arrow -> prev function\n");
+	printf("ESC -> quit\n");
+	
+	
+	
+	init_status(&viewport->status);
+	while(!viewport->done)
+	{
+		viewport_draw(viewport);
+	}
+	
+	return 0;
+}
+
+
+
+
+

@@ -1,0 +1,198 @@
+SDL/Test program initialization
+
+
+
+
+[drm:radeon_open] open_count = 0
+[drm:radeon_open_helper] pid = 770, minor = 0
+[drm:radeon_setup] 
+[drm:radeon_ioctl] pid=770, cmd=0xc0086401, nr=0x01, dev 0xe200, auth=1
+[drm:radeon_ioctl] pid=770, cmd=0xc0086401, nr=0x01, dev 0xe200, auth=1
+[drm:radeon_ioctl] pid=770, cmd=0x40086410, nr=0x10, dev 0xe200, auth=1
+[drm:radeon_ioctl] pid=770, cmd=0xc0186415, nr=0x15, dev 0xe200, auth=1
+[drm:radeon_addmap] offset = 0x00000000, size = 0x00001000, type = 2
+[drm:radeon_addmap] 4096 12 e48a6000
+[drm:radeon_mmap] start = 0x40262000, end = 0x40263000, offset = 0xe48a6000
+[drm:radeon_vm_open] 0x40262000,0x00001000
+[drm:radeon_vm_shm_nopage] 0x40262000 => 0xdd4ca000
+[drm:radeon_ioctl] pid=770, cmd=0xc0186415, nr=0x15, dev 0xe200, auth=1
+[drm:radeon_addmap] offset = 0xe0000000, size = 0x04000000, type = 0
+[drm:radeon_ioctl] pid=770, cmd=0xc0086426, nr=0x26, dev 0xe200, auth=1
+[drm:radeon_ioctl] pid=770, cmd=0xc0086426, nr=0x26, dev 0xe200, auth=1
+[drm:radeon_ioctl] pid=770, cmd=0x6430, nr=0x30, dev 0xe200, auth=1
+[drm:radeon_ioctl] pid=770, cmd=0x80206433, nr=0x33, dev 0xe200, auth=1
+sage repeated 2 times
+[drm:radeon_ioctl] pid=770, cmd=0x40046432, nr=0x32, dev 0xe200, auth=1
+[drm:radeon_ioctl] pid=770, cmd=0xc0106434, nr=0x34, dev 0xe200, auth=1
+[drm:radeon_ioctl] pid=770, cmd=0x40086436, nr=0x36, dev 0xe200, auth=1
+[drm:radeon_agp_bind] base = 0xd0000000 entry->bound = 0xd0000000
+[drm:radeon_ioctl] pid=770, cmd=0xc0186415, nr=0x15, dev 0xe200, auth=1
+[drm:radeon_addmap] offset = 0x00000000, size = 0x00101000, type = 3
+[drm:radeon_mmap] start = 0x44409000, end = 0x4450a000, offset = 0xd0000000
+[drm:radeon_mmap]	 Type = 3; start = 0x44409000, end = 0x4450a000, offset = 0xd0000000
+[drm:radeon_vm_open] 0x44409000,0x00101000
+[drm:radeon_ioctl] pid=770, cmd=0xc0186415, nr=0x15, dev 0xe200, auth=1
+[drm:radeon_addmap] offset = 0x00101000, size = 0x00001000, type = 3
+[drm:radeon_mmap] start = 0x40263000, end = 0x40264000, offset = 0xd0101000
+[drm:radeon_mmap]	 Type = 3; start = 0x40263000, end = 0x40264000, offset = 0xd0101000
+[drm:radeon_vm_open] 0x40263000,0x00001000
+[drm:radeon_ioctl] pid=770, cmd=0xc0186415, nr=0x15, dev 0xe200, auth=1
+[drm:radeon_addmap] offset = 0x00102000, size = 0x00200000, type = 3
+[drm:radeon_mmap] start = 0x4450a000, end = 0x4470a000, offset = 0xd0102000
+[drm:radeon_mmap]	 Type = 3; start = 0x4450a000, end = 0x4470a000, offset = 0xd0102000
+[drm:radeon_vm_open] 0x4450a000,0x00200000
+[drm:radeon_ioctl] pid=770, cmd=0xc0186415, nr=0x15, dev 0xe200, auth=1
+[drm:radeon_addmap] offset = 0x00302000, size = 0x004e0000, type = 3
+[drm:radeon_mmap] start = 0x4470a000, end = 0x44bea000, offset = 0xd0302000
+[drm:radeon_mmap]	 Type = 3; start = 0x4470a000, end = 0x44bea000, offset = 0xd0302000
+[drm:radeon_vm_open] 0x4470a000,0x004e0000
+[drm:radeon_ioctl] pid=770, cmd=0xc0186415, nr=0x15, dev 0xe200, auth=1
+[drm:radeon_addmap] offset = 0xfc180000, size = 0x00080000, type = 1
+[drm:radeon_ioctl] pid=770, cmd=0xc0086420, nr=0x20, dev 0xe200, auth=1
+[drm:radeon_ctxbitmap_next] drm_ctxbitmap_next bit : 1
+[drm:radeon_addctx] 1
+[drm:radeon_ioctl] pid=770, cmd=0x40086422, nr=0x22, dev 0xe200, auth=1
+[drm:radeon_ioctl] pid=770, cmd=0x4008642a, nr=0x2a, dev 0xe200, auth=1
+DRM(lock) 1 0
+[drm:radeon_lock] 1 (pid 770) requests lock (0x00000000), flags = 0x00000000
+DRM(lock) 2 de7c86ec 0
+DRM(lock) 2.1 ddad5f24
+DRM(lock) 2.2 e48926b8
+DRM(lock) 2.3 e48926c0
+DRM(lock) 2.4 ddad5f40
+DRM(lock) 2.5 e4892560
+DRM(lock) 2.6 e48926b8
+DRM(lock) 2.7 e48a6000
+DRM(lock) 3 0
+DRM(lock) 6 0
+[drm:radeon_lock] 1 has lock
+DRM(lock) 7 0
+[drm:radeon_ioctl] pid=770, cmd=0x40546440, nr=0x40, dev 0xe200, auth=1
+[drm:radeon_do_init_cp] radeon_do_init_cp
+[drm:radeon_do_init_cp] dev_priv->agp_size 8388608
+[drm:radeon_do_init_cp] dev_priv->agp_vm_start 0x4000000
+[drm:radeon_do_init_cp] dev_priv->agp_buffers_offset 0x4102000
+[drm:radeon_cp_load_microcode] radeon_cp_load_microcode
+[drm:radeon_cp_init_ring_buffer] radeon_cp_init_ring_buffer
+[drm:radeon_do_engine_reset] radeon_do_engine_reset
+[drm:radeon_do_cp_reset] radeon_do_cp_reset
+[drm:radeon_ioctl] pid=770, cmd=0xc0186416, nr=0x16, dev 0xe200, auth=1
+[drm:radeon_addbufs_agp] count: 	 32
+[drm:radeon_addbufs_agp] order: 	 16
+[drm:radeon_addbufs_agp] size:  	 65536
+[drm:radeon_addbufs_agp] agp_offset: -804249600
+[drm:radeon_addbufs_agp] alignment:  65536
+[drm:radeon_addbufs_agp] page_order: 4
+[drm:radeon_addbufs_agp] total: 	 65536
+[drm:radeon_addbufs_agp] buffer 0 @ d0102000
+[drm:radeon_addbufs_agp] buffer 1 @ d0112000
+[drm:radeon_addbufs_agp] buffer 2 @ d0122000
+[drm:radeon_addbufs_agp] buffer 3 @ d0132000
+[drm:radeon_addbufs_agp] buffer 4 @ d0142000
+[drm:radeon_addbufs_agp] buffer 5 @ d0152000
+[drm:radeon_addbufs_agp] buffer 6 @ d0162000
+[drm:radeon_addbufs_agp] buffer 7 @ d0172000
+[drm:radeon_addbufs_agp] buffer 8 @ d0182000
+[drm:radeon_addbufs_agp] buffer 9 @ d0192000
+[drm:radeon_addbufs_agp] buffer 10 @ d01a2000
+[drm:radeon_addbufs_agp] buffer 11 @ d01b2000
+[drm:radeon_addbufs_agp] buffer 12 @ d01c2000
+[drm:radeon_addbufs_agp] buffer 13 @ d01d2000
+[drm:radeon_addbufs_agp] buffer 14 @ d01e2000
+[drm:radeon_addbufs_agp] buffer 15 @ d01f2000
+[drm:radeon_addbufs_agp] buffer 16 @ d0202000
+[drm:radeon_addbufs_agp] buffer 17 @ d0212000
+[drm:radeon_addbufs_agp] buffer 18 @ d0222000
+[drm:radeon_addbufs_agp] buffer 19 @ d0232000
+[drm:radeon_addbufs_agp] buffer 20 @ d0242000
+[drm:radeon_addbufs_agp] buffer 21 @ d0252000
+[drm:radeon_addbufs_agp] buffer 22 @ d0262000
+[drm:radeon_addbufs_agp] buffer 23 @ d0272000
+[drm:radeon_addbufs_agp] buffer 24 @ d0282000
+[drm:radeon_addbufs_agp] buffer 25 @ d0292000
+[drm:radeon_addbufs_agp] buffer 26 @ d02a2000
+[drm:radeon_addbufs_agp] buffer 27 @ d02b2000
+[drm:radeon_addbufs_agp] buffer 28 @ d02c2000
+[drm:radeon_addbufs_agp] buffer 29 @ d02d2000
+[drm:radeon_addbufs_agp] buffer 30 @ d02e2000
+[drm:radeon_addbufs_agp] buffer 31 @ d02f2000
+[drm:radeon_addbufs_agp] byte_count: 2097152
+[drm:radeon_addbufs_agp] dma->buf_count : 32
+[drm:radeon_addbufs_agp] entry->buf_count : 32
+[drm:radeon_ioctl] pid=770, cmd=0xc00c6419, nr=0x19, dev 0xe200, auth=1
+[drm:radeon_mapbufs] 32 buffers, retcode = 0
+[drm:radeon_ioctl] pid=770, cmd=0xc00c6419, nr=0x19, dev 0xe200, auth=1
+[drm:radeon_mmap] start = 0x44bea000, end = 0x44dea000, offset = 0xd0102000
+[drm:radeon_mmap]	 Type = 3; start = 0x44bea000, end = 0x44dea000, offset = 0xd0102000
+[drm:radeon_vm_open] 0x44bea000,0x00200000
+[drm:radeon_mapbufs] 32 buffers, retcode = 0
+[drm:radeon_ioctl] pid=770, cmd=0x6441, nr=0x41, dev 0xe200, auth=1
+[drm:radeon_cp_start] radeon_cp_start
+[drm:radeon_do_cp_start] radeon_do_cp_start
+[drm:radeon_ioctl] pid=770, cmd=0xc0286429, nr=0x29, dev 0xe200, auth=1
+radeon_freelist_get 1
+[drm:radeon_freelist_get]	ret buf=0 last=0 pid=0
+[drm:radeon_ioctl] pid=770, cmd=0xc0086401, nr=0x01, dev 0xe200, auth=1
+[drm:radeon_ioctl] pid=770, cmd=0xc0086401, nr=0x01, dev 0xe200, auth=1
+[drm:radeon_mmap] start = 0x44dea000, end = 0x48dea000, offset = 0xe0000000
+[drm:radeon_mmap]	 Type = 0; start = 0x44dea000, end = 0x48dea000, offset = 0xe0000000
+[drm:radeon_vm_open] 0x44dea000,0x04000000
+[drm:radeon_mmap] start = 0x48dea000, end = 0x48deb000, offset = 0xe48a6000
+[drm:radeon_vm_open] 0x48dea000,0x00001000
+[drm:radeon_mmap] start = 0x48deb000, end = 0x48e6b000, offset = 0xfc180000
+[drm:radeon_mmap]	 Type = 1; start = 0x48deb000, end = 0x48e6b000, offset = 0xfc180000
+[drm:radeon_vm_open] 0x48deb000,0x00080000
+[drm:radeon_mmap] start = 0x48e6b000, end = 0x48e6c000, offset = 0xd0101000
+[drm:radeon_mmap]	 Type = 3; start = 0x48e6b000, end = 0x48e6c000, offset = 0xd0101000
+[drm:radeon_vm_open] 0x48e6b000,0x00001000
+[drm:radeon_ioctl] pid=770, cmd=0xc00c6419, nr=0x19, dev 0xe200, auth=1
+[drm:radeon_mapbufs] 32 buffers, retcode = 0
+[drm:radeon_ioctl] pid=770, cmd=0xc00c6419, nr=0x19, dev 0xe200, auth=1
+[drm:radeon_mmap] start = 0x48e6c000, end = 0x4906c000, offset = 0xd0102000
+[drm:radeon_mmap]	 Type = 3; start = 0x48e6c000, end = 0x4906c000, offset = 0xd0102000
+[drm:radeon_vm_open] 0x48e6c000,0x00200000
+[drm:radeon_mapbufs] 32 buffers, retcode = 0
+[drm:radeon_mmap] start = 0x4906c000, end = 0x4954c000, offset = 0xd0302000
+[drm:radeon_mmap]	 Type = 3; start = 0x4906c000, end = 0x4954c000, offset = 0xd0302000
+[drm:radeon_vm_open] 0x4906c000,0x004e0000
+[drm:radeon_ioctl] pid=770, cmd=0xc0086420, nr=0x20, dev 0xe200, auth=1
+[drm:radeon_ctxbitmap_next] drm_ctxbitmap_next bit : 2
+[drm:radeon_addctx] 2
+[drm:radeon_vm_shm_nopage] 0x48dea000 => 0xdd4ca000
+[drm:radeon_ioctl] pid=770, cmd=0xc0046427, nr=0x27, dev 0xe200, auth=1
+[drm:radeon_adddraw] 0
+
+
+
+
+
+
+
+
+
+
+
+Test program drawing
+
+
+[drm:radeon_ioctl] pid=770, cmd=0xc0286429, nr=0x29, dev 0xe200, auth=1
+radeon_freelist_get 1
+[drm:radeon_freelist_get]	  skipping buf=0 pid=770
+[drm:radeon_freelist_get]	ret buf=1 last=0 pid=0
+[drm:radeon_ioctl] pid=770, cmd=0x40106449, nr=0x49, dev 0xe200, auth=1
+[drm:radeon_cp_vertex] radeon_cp_vertex: pid=770 index=1 count=0 discard=1
+[drm:radeon_cp_dispatch_vertex] radeon_cp_dispatch_vertex: nbox=0
+[drm:radeon_ioctl] pid=770, cmd=0x6447, nr=0x47, dev 0xe200, auth=1
+[drm:radeon_cp_swap] radeon_cp_swap
+[drm:radeon_cp_dispatch_swap] radeon_cp_dispatch_swap
+[drm:radeon_vm_close] 0x40263000,0x00001000
+[drm:radeon_vm_close] 0x44409000,0x00101000
+[drm:radeon_vm_close] 0x4450a000,0x00200000
+[drm:radeon_vm_close] 0x4470a000,0x004e0000
+[drm:radeon_vm_close] 0x44bea000,0x00200000
+[drm:radeon_vm_close] 0x44dea000,0x04000000
+[drm:radeon_vm_close] 0x48deb000,0x00080000
+[drm:radeon_vm_close] 0x48e6b000,0x00001000
+[drm:radeon_vm_close] 0x48e6c000,0x00200000
+[drm:radeon_vm_close] 0x4906c000,0x004e0000
+[drm:radeon_flush] pid = 770, device = 0xe200, open_count = 1

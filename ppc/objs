@@ -1,0 +1,1 @@
+ppc/dri/dri.o ppc/drivers/ati/radeon_accel.o ppc/drivers/ati/radeon_dri.o ppc/drivers/ati/radeon_driver.o ppc/lib/GL/dri/dri_glfb.o ppc/lib/GL/dri/fbdri.o ppc/lib/GL/dri/fbdrimain.o ppc/lib/GL/glfb/g_single.o ppc/lib/GL/glfb/glfbcmds.o ppc/lib/GL/glfb/glfbext.o ppc/lib/GL/glfb/pixel.o ppc/lib/GL/glfb/pixelstore.o ppc/lib/GL/glfb/render2.o ppc/lib/GL/glfb/vertarr.o

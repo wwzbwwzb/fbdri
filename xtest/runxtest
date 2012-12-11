@@ -1,0 +1,3 @@
+export LD_LIBRARY_PATH=/usr/X11R6/lib:/amazon/usr/src/dri/xtest/sdl/src/.libs/
+
+i686/animation

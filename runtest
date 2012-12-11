@@ -1,0 +1,6 @@
+export LD_LIBRARY_PATH=.:/usr/src/sdl/src/.libs:/usr/src/dri/i686:$LD_LIBRARY_PATH
+
+#gdb i686/animation
+
+#i686/testyuv
+i686/animation

@@ -1,0 +1,3 @@
+void radeon_delay()
+{
+}

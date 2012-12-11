@@ -1,0 +1,254 @@
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:691: checking host system type
+configure:712: checking target system type
+configure:742: checking for a BSD compatible install
+configure:795: checking whether build environment is sane
+configure:852: checking whether make sets ${MAKE}
+configure:898: checking for working aclocal
+configure:911: checking for working autoconf
+configure:924: checking for working automake
+configure:937: checking for working autoheader
+configure:950: checking for working makeinfo
+configure:1036: checking build system type
+configure:1056: checking for ranlib
+configure:1086: checking for gcc
+configure:1199: checking whether the C compiler (gcc -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include ) works
+configure:1215: gcc -o conftest -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include   conftest.c  1>&5
+configure:1241: checking whether the C compiler (gcc -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include ) is a cross-compiler
+configure:1246: checking whether we are using GNU C
+configure:1274: checking whether gcc accepts -g
+configure:1317: checking for ld used by GCC
+configure:1380: checking if the linker (/usr/bin/ld) is GNU ld
+configure:1396: checking for BSD-compatible nm
+configure:1432: checking whether ln -s works
+ltconfig:603: checking for object suffix
+ltconfig:604: gcc -c -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include  conftest.c 1>&5
+ltconfig:776: checking if gcc PIC flag -fPIC works
+ltconfig:777: gcc -c -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include -fPIC -DPIC  conftest.c 1>&5
+ltconfig:829: checking if gcc supports -c -o file.o
+ltconfig:830: gcc -c -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include -o out/conftest2.o  conftest.c 1>&5
+ltconfig:862: checking if gcc supports -c -o file.lo
+ltconfig:863: gcc -c -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include -c -o conftest.lo  conftest.c 1>&5
+ltconfig:914: checking if gcc supports -fno-rtti -fno-exceptions
+ltconfig:915: gcc -c -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include -fno-rtti -fno-exceptions -c conftest.c  conftest.c 1>&5
+ltconfig:958: checking if gcc static flag -static works
+ltconfig:959: gcc -o conftest -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include   -static conftest.c  1>&5
+GNU ld version 2.10.91 (with BFD 2.10.91.0.2)
+ltconfig:1653: checking if global_symbol_pipe works
+ltconfig:1654: gcc -c -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include  conftest.c 1>&5
+ltconfig:1657: eval "/usr/bin/nm -B conftest.o | sed -n -e 's/^.*[ 	]\([ABCDGISTW]\)[ 	][ 	]*\(\)\([_A-Za-z][_A-Za-z0-9]*\)$/\1 \2\3 \3/p' > conftest.nm"
+ltconfig:1709: gcc -o conftest -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include -fno-builtin -fno-rtti -fno-exceptions   conftest.c conftstm.o 1>&5
+configure:1826: checking whether make sets ${MAKE}
+configure:1855: checking for gcc
+configure:1968: checking whether the C compiler (gcc -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include ) works
+configure:1984: gcc -o conftest -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include   conftest.c  1>&5
+configure:2010: checking whether the C compiler (gcc -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include ) is a cross-compiler
+configure:2015: checking whether we are using GNU C
+configure:2043: checking whether gcc accepts -g
+configure:2075: checking for inline
+configure:2115: checking for working const
+configure:2487: checking for c++
+configure:2519: checking whether the C++ compiler (c++  ) works
+configure:2535: c++ -o conftest    conftest.C  1>&5
+configure:2561: checking whether the C++ compiler (c++  ) is a cross-compiler
+configure:2566: checking whether we are using GNU C++
+configure:2594: checking whether c++ accepts -g
+configure:2643: checking for a BSD compatible install
+configure:2696: checking how to run the C preprocessor
+configure:2778: checking for working alloca.h
+configure:2811: checking for alloca
+configure:3873: checking for nasm
+configure:3315: checking for OSS audio support
+configure:3329: gcc -c -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include -Wall -DUSE_ASMBLIT -I./hermes -I$(top_srcdir)/src/hermes  conftest.c 1>&5
+configure: In function `main':
+configure:3324: warning: unused variable `arg'
+configure:3364: checking for sys/asoundlib.h
+configure:3396: checking for snd_pcm_open in -lasound
+configure:3729: checking for artsc-config
+configure:3767: checking for aRts development environment
+configure:3783: gcc -c -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include -Wall -DUSE_ASMBLIT -I./hermes -I$(top_srcdir)/src/hermes -DOSS_SUPPORT -I/usr/include/kde/artsc  conftest.c 1>&5
+configure:3774:32: artsc.h: No such file or directory
+configure: In function `main':
+configure:3778: `arts_stream_t' undeclared (first use in this function)
+configure:3778: (Each undeclared identifier is reported only once
+configure:3778: for each function it appears in.)
+configure:3778: parse error before "stream"
+configure: failed program was:
+#line 3772 "configure"
+#include "confdefs.h"
+
+             #include <artsc.h>
+            
+int main() {
+
+             arts_stream_t stream;
+            
+; return 0; }
+configure:3513: checking for esd-config
+configure:3548: checking for ESD - version >= 0.2.8
+configure:3630: gcc -o conftest -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include -Wall -DUSE_ASMBLIT -I./hermes -I$(top_srcdir)/src/hermes -DOSS_SUPPORT    conftest.c   1>&5
+configure:3577:17: esd.h: No such file or directory
+configure: In function `main':
+configure:3609: parse error before '>' token
+configure:3610: parse error before '==' token
+configure:3610: parse error before '>' token
+configure:3611: parse error before '==' token
+configure:3611: parse error before '==' token
+configure:3611: parse error before '>=' token
+configure:3617: parse error before ',' token
+configure: failed program was:
+#line 3572 "configure"
+#include "confdefs.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <esd.h>
+
+char*
+my_strdup (char *str)
+{
+  char *new_str;
+  
+  if (str)
+    {
+      new_str = malloc ((strlen (str) + 1) * sizeof(char));
+      strcpy (new_str, str);
+    }
+  else
+    new_str = NULL;
+  
+  return new_str;
+}
+
+int main ()
+{
+  int major, minor, micro;
+  char *tmp_version;
+
+  system ("touch conf.esdtest");
+
+  /* HP/UX 9 (%@#!) writes to sscanf strings */
+  tmp_version = my_strdup("0.2.8");
+  if (sscanf(tmp_version, "%d.%d.%d", &major, &minor, &micro) != 3) {
+     printf("%s, bad version string\n", "0.2.8");
+     exit(1);
+   }
+
+   if (( > major) ||
+      (( == major) && ( > minor)) ||
+      (( == major) && ( == minor) && ( >= micro)))
+    {
+      return 0;
+    }
+  else
+    {
+      printf("\n*** 'esd-config --version' returned %d.%d.%d, but the minimum version\n", , , );
+      printf("*** of ESD required is %d.%d.%d. If esd-config is correct, then it is\n", major, minor, micro);
+      printf("*** best to upgrade to the required version.\n");
+      printf("*** If esd-config was wrong, set the environment variable ESD_CONFIG\n");
+      printf("*** to point to the correct copy of esd-config, and remove the file\n");
+      printf("*** config.cache before re-running configure\n");
+      return 1;
+    }
+}
+
+
+configure:3679: gcc -o conftest -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include -Wall -DUSE_ASMBLIT -I./hermes -I$(top_srcdir)/src/hermes -DOSS_SUPPORT    conftest.c   1>&5
+configure:3672:17: esd.h: No such file or directory
+configure: failed program was:
+#line 3669 "configure"
+#include "confdefs.h"
+
+#include <stdio.h>
+#include <esd.h>
+
+int main() {
+ return 0; 
+; return 0; }
+configure:3817: checking for NAS audio support
+configure:4002: checking for X
+configure:4316: checking for dnet_ntoa in -ldnet
+configure:4357: checking for dnet_ntoa in -ldnet_stub
+configure:4405: checking for gethostbyname
+configure:4503: checking for connect
+configure:4595: checking for remove
+configure:4687: checking for shmat
+configure:4788: checking for IceConnectionNumber in -lICE
+configure:4850: checking for XFree86 VidMode 1.0 support
+configure:4864: gcc -c -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include -Wall -DUSE_ASMBLIT -I./hermes -I$(top_srcdir)/src/hermes -DOSS_SUPPORT  -I/usr/X11R6/include -DENABLE_X11  conftest.c 1>&5
+configure:4982: checking for XFree86 VidMode gamma support
+configure:4997: gcc -c -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include -Wall -DUSE_ASMBLIT -I./hermes -I$(top_srcdir)/src/hermes -DOSS_SUPPORT  -I/usr/X11R6/include -DENABLE_X11 -DXFREE86_VM  conftest.c 1>&5
+configure: In function `main':
+configure:4992: warning: unused variable `gamma'
+configure:5031: checking for XFree86 DGA 1.0 support
+configure:5045: gcc -c -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include -Wall -DUSE_ASMBLIT -I./hermes -I$(top_srcdir)/src/hermes -DOSS_SUPPORT  -I/usr/X11R6/include -DENABLE_X11 -DXFREE86_VM -DXFREE86_VMGAMMA  conftest.c 1>&5
+configure:5074: checking for XFree86 XvImage support
+configure:5092: gcc -c -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include -Wall -DUSE_ASMBLIT -I./hermes -I$(top_srcdir)/src/hermes -DOSS_SUPPORT  -I/usr/X11R6/include -DENABLE_X11 -DXFREE86_VM -DXFREE86_VMGAMMA -DXFREE86_DGAMOUSE -DDEFAULT_DGAMOUSE  conftest.c 1>&5
+configure: In function `main':
+configure:5087: warning: unused variable `image'
+configure:5172: checking for XFree86 DGA 2.0 support
+configure:5187: gcc -c -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include -Wall -DUSE_ASMBLIT -I./hermes -I$(top_srcdir)/src/hermes -DOSS_SUPPORT  -I/usr/X11R6/include -DENABLE_X11 -DXFREE86_VM -DXFREE86_VMGAMMA -DXFREE86_DGAMOUSE -DDEFAULT_DGAMOUSE -DXFREE86_XV  conftest.c 1>&5
+configure: In function `main':
+configure:5182: warning: unused variable `xevent'
+configure:5264: checking for PlayStation 2 GS support
+configure:5278: gcc -c -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include -Wall -DUSE_ASMBLIT -I./hermes -I$(top_srcdir)/src/hermes -DOSS_SUPPORT  -I/usr/X11R6/include -DENABLE_X11 -DXFREE86_VM -DXFREE86_VMGAMMA -DXFREE86_DGAMOUSE -DDEFAULT_DGAMOUSE -DXFREE86_XV -DENABLE_DGA  conftest.c 1>&5
+configure:5269:36: linux/ps2/dev.h: No such file or directory
+configure:5270:35: linux/ps2/gs.h: No such file or directory
+configure: failed program was:
+#line 5267 "configure"
+#include "confdefs.h"
+
+         #include <linux/ps2/dev.h>
+         #include <linux/ps2/gs.h>
+        
+int main() {
+
+        
+; return 0; }
+configure:5471: checking for OpenGL (GLX) support
+configure:5486: gcc -c -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include -Wall -DUSE_ASMBLIT -I./hermes -I$(top_srcdir)/src/hermes -DOSS_SUPPORT  -I/usr/X11R6/include -DENABLE_X11 -DXFREE86_VM -DXFREE86_VMGAMMA -DXFREE86_DGAMOUSE -DDEFAULT_DGAMOUSE -DXFREE86_XV -DENABLE_DGA  conftest.c 1>&5
+configure:5500: checking for dlopen in -ldl
+configure:5676: checking for pthreads
+configure:5691: gcc -o conftest -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include -Wall -DUSE_ASMBLIT -I./hermes -I$(top_srcdir)/src/hermes -DOSS_SUPPORT  -I/usr/X11R6/include -DENABLE_X11 -DXFREE86_VM -DXFREE86_VMGAMMA -DXFREE86_DGAMOUSE -DDEFAULT_DGAMOUSE -DXFREE86_XV -DENABLE_DGA -DHAVE_OPENGL   conftest.c  -lpthread 1>&5
+configure:5709: checking for recursive mutexes
+configure:5728: gcc -o conftest -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include -Wall -DUSE_ASMBLIT -I./hermes -I$(top_srcdir)/src/hermes -DOSS_SUPPORT  -I/usr/X11R6/include -DENABLE_X11 -DXFREE86_VM -DXFREE86_VMGAMMA -DXFREE86_DGAMOUSE -DDEFAULT_DGAMOUSE -DXFREE86_XV -DENABLE_DGA -DHAVE_OPENGL -D_REENTRANT -DSDL_USE_PTHREADS   conftest.c  -lpthread 1>&5
+configure: In function `main':
+configure:5720: warning: implicit declaration of function `pthread_mutexattr_setkind_np'
+configure:5753: checking for broken glibc 2.0 pthreads
+configure:5771: gcc -c -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include -Wall -DUSE_ASMBLIT -I./hermes -I$(top_srcdir)/src/hermes -DOSS_SUPPORT  -I/usr/X11R6/include -DENABLE_X11 -DXFREE86_VM -DXFREE86_VMGAMMA -DXFREE86_DGAMOUSE -DDEFAULT_DGAMOUSE -DXFREE86_XV -DENABLE_DGA -DHAVE_OPENGL -D_REENTRANT -DSDL_USE_PTHREADS  conftest.c 1>&5
+configure:5762:24: #error pthread implementation okay
+configure: failed program was:
+#line 5756 "configure"
+#include "confdefs.h"
+
+                      #include <features.h>
+                      #if (__GLIBC__ == 2) && (__GLIBC_MINOR__ == 0)
+                      #warning Working around a bug in glibc 2.0 pthreads
+                      #else
+                      #error pthread implementation okay
+                      #endif /* glibc 2.0 */
+                    
+int main() {
+
+                    
+; return 0; }
+configure:5788: checking whether semun is defined in /usr/include/sys/sem.h
+configure:5803: gcc -c -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include -Wall -DUSE_ASMBLIT -I./hermes -I$(top_srcdir)/src/hermes -DOSS_SUPPORT  -I/usr/X11R6/include -DENABLE_X11 -DXFREE86_VM -DXFREE86_VMGAMMA -DXFREE86_DGAMOUSE -DDEFAULT_DGAMOUSE -DXFREE86_XV -DENABLE_DGA -DHAVE_OPENGL -D_REENTRANT -DSDL_USE_PTHREADS  conftest.c 1>&5
+configure: In function `main':
+configure:5798: storage size of `t' isn't known
+configure:5798: warning: unused variable `t'
+configure: failed program was:
+#line 5791 "configure"
+#include "confdefs.h"
+
+      #include <sys/types.h>
+      #include <sys/sem.h>
+    
+int main() {
+
+      union semun t;
+    
+; return 0; }

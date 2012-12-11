@@ -1,0 +1,454 @@
+[drm:radeon_adddraw] 0
+[drm:radeon_ioctl] pid=758, cmd=0x40186448, nr=0x48, dev 0xe200, auth=1
+[drm:radeon_cp_clear] radeon_cp_clear
+[drm:radeon_cp_dispatch_clear] radeon_cp_dispatch_clear
+[drm:radeon_cp_dispatch_clear] dispatch clear 7,172-1280,1024 flags 0x6
+[drm:radeon_emit_state] radeon_emit_state: dirty=0x0001ffff
+[drm:radeon_emit_context]	  radeon_emit_context
+[drm:radeon_emit_vertfmt]	  radeon_emit_vertfmt
+[drm:radeon_emit_line]     radeon_emit_line
+[drm:radeon_emit_bumpmap]	  radeon_emit_bumpmap
+[drm:radeon_emit_masks] 	radeon_emit_masks
+[drm:radeon_emit_viewport]     radeon_emit_viewport
+[drm:radeon_emit_setup] 	radeon_emit_setup
+[drm:radeon_emit_misc]     radeon_emit_misc
+[drm:radeon_emit_tex0]     radeon_emit_tex0: offset=0x0
+[drm:radeon_emit_tex1]     radeon_emit_tex1: offset=0x0
+[drm:radeon_ioctl] pid=758, cmd=0xc0286429, nr=0x29, dev 0xe200, auth=1
+[drm:radeon_freelist_get]	  skipping buf=0 pid=758
+[drm:radeon_freelist_get]	  skipping buf=1 pid=758
+[drm:radeon_freelist_get]	  skipping buf=2 pid=758
+[drm:radeon_freelist_get]	  skipping buf=3 pid=758
+[drm:radeon_freelist_get]	  skipping buf=4 pid=758
+[drm:radeon_freelist_get]	  skipping buf=5 pid=758
+[drm:radeon_freelist_get]	  skipping buf=6 pid=758
+[drm:radeon_freelist_get]	  skipping buf=7 pid=758
+[drm:radeon_freelist_get]	  skipping buf=8 pid=758
+[drm:radeon_freelist_get]	  skipping buf=9 pid=758
+[drm:radeon_freelist_get]	  skipping buf=10 pid=758
+[drm:radeon_freelist_get]	  skipping buf=11 pid=758
+[drm:radeon_freelist_get]	  skipping buf=12 pid=758
+[drm:radeon_freelist_get]	  skipping buf=13 pid=758
+[drm:radeon_freelist_get]	  skipping buf=14 pid=758
+[drm:radeon_freelist_get]	  skipping buf=15 pid=758
+[drm:radeon_freelist_get]	  skipping buf=16 pid=758
+[drm:radeon_freelist_get]	  skipping buf=17 pid=758
+[drm:radeon_freelist_get]	  skipping buf=18 pid=758
+[drm:radeon_freelist_get]	  skipping buf=19 pid=758
+[drm:radeon_freelist_get]	  skipping buf=20 pid=758
+[drm:radeon_freelist_get]	  skipping buf=21 pid=758
+[drm:radeon_freelist_get]	  skipping buf=22 pid=758
+[drm:radeon_freelist_get]	  skipping buf=23 pid=758
+[drm:radeon_freelist_get]	  skipping buf=24 pid=758
+[drm:radeon_freelist_get]	  skipping buf=25 pid=758
+[drm:radeon_freelist_get]	  skipping buf=26 pid=758
+[drm:radeon_freelist_get]	  skipping buf=27 pid=758
+[drm:radeon_freelist_get]	  skipping buf=28 pid=758
+[drm:radeon_freelist_get]	  skipping buf=29 pid=758
+[drm:radeon_freelist_get]	ret buf=30 last=0 pid=0
+[drm:radeon_ioctl] pid=789, cmd=0x4008642a, nr=0x2a, dev 0xe200, auth=1
+[drm:radeon_lock] 3 (pid 789) requests lock (0x00000001), flags = 0x00000000
+[drm:radeon_lock] 3 has lock
+[drm:radeon_ioctl] pid=758, cmd=0x4008642a, nr=0x2a, dev 0xe200, auth=1
+[drm:radeon_lock] 1 (pid 758) requests lock (0x00000003), flags = 0x00000000
+[drm:radeon_lock] 1 has lock
+[drm:radeon_ioctl] pid=789, cmd=0x4008642a, nr=0x2a, dev 0xe200, auth=1
+[drm:radeon_lock] 3 (pid 789) requests lock (0x00000001), flags = 0x00000000
+[drm:radeon_lock] 3 has lock
+[drm:radeon_ioctl] pid=758, cmd=0x4008642a, nr=0x2a, dev 0xe200, auth=1
+[drm:radeon_lock] 1 (pid 758) requests lock (0x00000003), flags = 0x00000000
+[drm:radeon_lock] 1 has lock
+[drm:radeon_ioctl] pid=789, cmd=0x4008642a, nr=0x2a, dev 0xe200, auth=1
+[drm:radeon_lock] 3 (pid 789) requests lock (0x00000001), flags = 0x00000000
+[drm:radeon_lock] 3 has lock
+[drm:radeon_ioctl] pid=789, cmd=0x40186448, nr=0x48, dev 0xe200, auth=1
+[drm:radeon_cp_clear] radeon_cp_clear
+[drm:radeon_cp_dispatch_clear] radeon_cp_dispatch_clear
+[drm:radeon_cp_dispatch_clear] dispatch clear 7,172-1280,1024 flags 0x2
+[drm:radeon_ioctl] pid=789, cmd=0xc0286429, nr=0x29, dev 0xe200, auth=1
+[drm:radeon_freelist_get]	  skipping buf=0 pid=758
+[drm:radeon_freelist_get]	  skipping buf=1 pid=758
+[drm:radeon_freelist_get]	  skipping buf=2 pid=758
+[drm:radeon_freelist_get]	  skipping buf=3 pid=758
+[drm:radeon_freelist_get]	  skipping buf=4 pid=758
+[drm:radeon_freelist_get]	  skipping buf=5 pid=758
+[drm:radeon_freelist_get]	  skipping buf=6 pid=758
+[drm:radeon_freelist_get]	  skipping buf=7 pid=758
+[drm:radeon_freelist_get]	  skipping buf=8 pid=758
+[drm:radeon_freelist_get]	  skipping buf=9 pid=758
+[drm:radeon_freelist_get]	  skipping buf=10 pid=758
+[drm:radeon_freelist_get]	  skipping buf=11 pid=758
+[drm:radeon_freelist_get]	  skipping buf=12 pid=758
+[drm:radeon_freelist_get]	  skipping buf=13 pid=758
+[drm:radeon_freelist_get]	  skipping buf=14 pid=758
+[drm:radeon_freelist_get]	  skipping buf=15 pid=758
+[drm:radeon_freelist_get]	  skipping buf=16 pid=758
+[drm:radeon_freelist_get]	  skipping buf=17 pid=758
+[drm:radeon_freelist_get]	  skipping buf=18 pid=758
+[drm:radeon_freelist_get]	  skipping buf=19 pid=758
+[drm:radeon_freelist_get]	  skipping buf=20 pid=758
+[drm:radeon_freelist_get]	  skipping buf=21 pid=758
+[drm:radeon_freelist_get]	  skipping buf=22 pid=758
+[drm:radeon_freelist_get]	  skipping buf=23 pid=758
+[drm:radeon_freelist_get]	  skipping buf=24 pid=758
+[drm:radeon_freelist_get]	  skipping buf=25 pid=758
+[drm:radeon_freelist_get]	  skipping buf=26 pid=758
+[drm:radeon_freelist_get]	  skipping buf=27 pid=758
+[drm:radeon_freelist_get]	  skipping buf=28 pid=758
+[drm:radeon_freelist_get]	  skipping buf=29 pid=758
+[drm:radeon_freelist_get]	  skipping buf=30 pid=758
+[drm:radeon_freelist_get]	ret buf=31 last=0 pid=0
+radeon_freelist_get]	 skipping buf=16 pid=789
+[drm:radeon_freelist_get]	  skipping buf=17 pid=789
+[drm:radeon_freelist_get]	  skipping buf=18 pid=789
+[drm:radeon_freelist_get]	  skipping buf=19 pid=789
+[drm:radeon_freelist_get]	  skipping buf=20 pid=789
+[drm:radeon_freelist_get]	  skipping buf=21 pid=789
+[drm:radeon_freelist_get]	  skipping buf=22 pid=789
+[drm:radeon_freelist_get]	  skipping buf=23 pid=789
+[drm:radeon_freelist_get]	  skipping buf=24 pid=789
+[drm:radeon_freelist_get]	  skipping buf=25 pid=789
+[drm:radeon_freelist_get]	  skipping buf=26 pid=789
+[drm:radeon_freelist_get]	  skipping buf=27 pid=789
+[drm:radeon_freelist_get]	  skipping buf=28 pid=789
+[drm:radeon_freelist_get]	  skipping buf=29 pid=789
+[drm:radeon_freelist_get]	  skipping buf=30 pid=758
+[drm:radeon_freelist_get]	  skipping buf=31 pid=789
+[drm:radeon_freelist_get]	ret buf=5 last=5 age=166 done=196
+[drm:radeon_cp_dispatch_texture] tex: ofs=0x8e00 p=64 f=7 x=0 y=540 w=1024 h=484
+[drm:radeon_cp_dispatch_texture]	tex=4096x1024  blit=4096
+[drm:radeon_cp_dispatch_indirect] indirect: buf=5 s=0x0 e=0xf020
+[drm:radeon_ioctl] pid=789, cmd=0xc018644e, nr=0x4e, dev 0xe200, auth=1
+[drm:radeon_freelist_get]	  skipping buf=0 pid=789
+[drm:radeon_freelist_get]	  skipping buf=1 pid=789
+[drm:radeon_freelist_get]	  skipping buf=2 pid=789
+[drm:radeon_freelist_get]	  skipping buf=3 pid=789
+[drm:radeon_freelist_get]	  skipping buf=4 pid=789
+[drm:radeon_freelist_get]	  skipping buf=5 pid=789
+[drm:radeon_freelist_get]	  skipping buf=6 pid=789
+[drm:radeon_freelist_get]	  skipping buf=7 pid=789
+[drm:radeon_freelist_get]	  skipping buf=8 pid=789
+[drm:radeon_freelist_get]	  skipping buf=9 pid=789
+[drm:radeon_freelist_get]	  skipping buf=10 pid=789
+[drm:radeon_freelist_get]	  skipping buf=11 pid=789
+[drm:radeon_freelist_get]	  skipping buf=12 pid=789
+[drm:radeon_freelist_get]	  skipping buf=13 pid=789
+[drm:radeon_freelist_get]	  skipping buf=14 pid=789
+[drm:radeon_freelist_get]	  skipping buf=15 pid=789
+[drm:radeon_freelist_get]	  skipping buf=16 pid=789
+[drm:radeon_freelist_get]	  skipping buf=17 pid=789
+[drm:radeon_freelist_get]	  skipping buf=18 pid=789
+[drm:radeon_freelist_get]	  skipping buf=19 pid=789
+[drm:radeon_freelist_get]	  skipping buf=20 pid=789
+[drm:radeon_freelist_get]	  skipping buf=21 pid=789
+[drm:radeon_freelist_get]	  skipping buf=22 pid=789
+[drm:radeon_freelist_get]	  skipping buf=23 pid=789
+[drm:radeon_freelist_get]	  skipping buf=24 pid=789
+[drm:radeon_freelist_get]	  skipping buf=25 pid=789
+[drm:radeon_freelist_get]	  skipping buf=26 pid=789
+[drm:radeon_freelist_get]	  skipping buf=27 pid=789
+[drm:radeon_freelist_get]	  skipping buf=28 pid=789
+[drm:radeon_freelist_get]	  skipping buf=29 pid=789
+[drm:radeon_freelist_get]	  skipping buf=30 pid=758
+[drm:radeon_freelist_get]	  skipping buf=31 pid=789
+[drm:radeon_freelist_get]	ret buf=6 last=6 age=167 done=197
+[drm:radeon_cp_dispatch_texture] tex: ofs=0x8e00 p=64 f=7 x=0 y=555 w=1024 h=469
+[drm:radeon_cp_dispatch_texture]	tex=4096x1024  blit=4096
+[drm:radeon_cp_dispatch_indirect] indirect: buf=6 s=0x0 e=0xf020
+[drm:radeon_ioctl] pid=789, cmd=0xc018644e, nr=0x4e, dev 0xe200, auth=1
+[drm:radeon_freelist_get]	  skipping buf=0 pid=789
+[drm:radeon_freelist_get]	  skipping buf=1 pid=789
+[drm:radeon_freelist_get]	  skipping buf=2 pid=789
+[drm:radeon_freelist_get]	  skipping buf=3 pid=789
+[drm:radeon_freelist_get]	  skipping buf=4 pid=789
+[drm:radeon_freelist_get]	  skipping buf=5 pid=789
+[drm:radeon_freelist_get]	  skipping buf=6 pid=789
+[drm:radeon_freelist_get]	  skipping buf=7 pid=789
+[drm:radeon_freelist_get]	  skipping buf=8 pid=789
+[drm:radeon_freelist_get]	  skipping buf=9 pid=789
+[drm:radeon_freelist_get]	  skipping buf=10 pid=789
+[drm:radeon_freelist_get]	  skipping buf=11 pid=789
+[drm:radeon_freelist_get]	  skipping buf=9 pid=789
+[drm:radeon_freelist_get]	  skipping buf=10 pid=789
+[drm:radeon_freelist_get]	  skipping buf=11 pid=789
+[drm:radeon_freelist_get]	  skipping buf=12 pid=789
+[drm:radeon_freelist_get]	  skipping buf=13 pid=789
+[drm:radeon_freelist_get]	  skipping buf=14 pid=789
+[drm:radeon_freelist_get]	  skipping buf=15 pid=789
+[drm:radeon_freelist_get]	  skipping buf=16 pid=789
+[drm:radeon_freelist_get]	  skipping buf=17 pid=789
+[drm:radeon_freelist_get]	  skipping buf=18 pid=789
+[drm:radeon_freelist_get]	  skipping buf=19 pid=789
+[drm:radeon_freelist_get]	  skipping buf=20 pid=789
+[drm:radeon_freelist_get]	  skipping buf=21 pid=789
+[drm:radeon_freelist_get]	  skipping buf=22 pid=789
+[drm:radeon_freelist_get]	  skipping buf=23 pid=789
+[drm:radeon_freelist_get]	  skipping buf=24 pid=789
+[drm:radeon_freelist_get]	  skipping buf=25 pid=789
+[drm:radeon_freelist_get]	  skipping buf=26 pid=789
+[drm:radeon_freelist_get]	  skipping buf=27 pid=789
+[drm:radeon_freelist_get]	  skipping buf=28 pid=789
+[drm:radeon_freelist_get]	  skipping buf=29 pid=789
+[drm:radeon_freelist_get]	  skipping buf=30 pid=758
+[drm:radeon_freelist_get]	  skipping buf=31 pid=789
+[drm:radeon_freelist_get]	  skipping buf=31 age=0 done=222
+[drm:radeon_freelist_get]	  skipping buf=0 age=223 done=222
+[drm:radeon_freelist_get]	ret buf=1 last=31 age=194 done=222
+[drm:radeon_cp_dispatch_texture] tex: ofs=0x8e00 p=64 f=7 x=0 y=930 w=1024 h=94
+[drm:radeon_cp_dispatch_texture]	tex=4096x1024  blit=4096
+[drm:radeon_cp_dispatch_indirect] indirect: buf=1 s=0x0 e=0xf020
+[drm:radeon_ioctl] pid=789, cmd=0xc018644e, nr=0x4e, dev 0xe200, auth=1
+[drm:radeon_freelist_get]	  skipping buf=0 pid=789
+[drm:radeon_freelist_get]	  skipping buf=1 pid=789
+[drm:radeon_freelist_get]	  skipping buf=2 pid=789
+[drm:radeon_freelist_get]	  skipping buf=3 pid=789
+[drm:radeon_freelist_get]	  skipping buf=4 pid=789
+[drm:radeon_freelist_get]	  skipping buf=5 pid=789
+[drm:radeon_freelist_get]	  skipping buf=6 pid=789
+[drm:radeon_freelist_get]	  skipping buf=7 pid=789
+[drm:radeon_freelist_get]	  skipping buf=8 pid=789
+[drm:radeon_freelist_get]	  skipping buf=9 pid=789
+[drm:radeon_freelist_get]	  skipping buf=10 pid=789
+[drm:radeon_freelist_get]	  skipping buf=11 pid=789
+[drm:radeon_freelist_get]	  skipping buf=12 pid=789
+[drm:radeon_freelist_get]	  skipping buf=13 pid=789
+[drm:radeon_freelist_get]	  skipping buf=14 pid=789
+[drm:radeon_freelist_get]	  skipping buf=15 pid=789
+[drm:radeon_freelist_get]	  skipping buf=16 pid=789
+[drm:radeon_freelist_get]	  skipping buf=17 pid=789
+[drm:radeon_freelist_get]	  skipping buf=18 pid=789
+[drm:radeon_freelist_get]	  skipping buf=19 pid=789
+[drm:radeon_freelist_get]	  skipping buf=20 pid=789
+[drm:radeon_freelist_get]	  skipping buf=21 pid=789
+[drm:radeon_freelist_get]	  skipping buf=22 pid=789
+[drm:radeon_freelist_get]	  skipping buf=23 pid=789
+[drm:radeon_freelist_get]	  skipping buf=24 pid=789
+[drm:radeon_freelist_get]	  skipping buf=25 pid=789
+[drm:radeon_freelist_get]	  skipping buf=26 pid=789
+[drm:radeon_freelist_get]	  skipping buf=27 pid=789
+[drm:radeon_freelist_get]	  skipping buf=28 pid=789
+[drm:radeon_freelist_get]	  skipping buf=29 pid=789
+[drm:radeon_freelist_get]	  skipping buf=30 pid=758
+[drm:radeon_freelist_get]	  skipping buf=31 pid=789
+[drm:radeon_freelist_get]	ret buf=0 last=0 age=223 done=224
+[drm:radeon_cp_dispatch_texture] tex: ofs=0x8e00 p=64 f=7 x=0 y=945 w=1024 h=79
+[drm:radeon_cp_dispatch_texture]	tex=4096x1024  blit=4096
+[drm:radeon_cp_dispatch_indirect] indirect: buf=0 s=0x0 e=0xf020
+[drm:radeon_ioctl] pid=789, cmd=0xc018644e, nr=0x4e, dev 0xe200, auth=1
+[drm:radeon_freelist_get]	  skipping buf=0 pid=789
+[drm:radeon_freelist_get]	  skipping buf=1 pid=789
+[drm:radeon_freelist_get]	  skipping buf=2 pid=789
+[drm:radeon_freelist_get]	  skipping buf=3 pid=789
+[drm:radeon_freelist_get]	  skipping buf=4 pid=789
+[drm:radeon_freelist_get]	  skipping buf=5 pid=789
+[drm:radeon_freelist_get]	  skipping buf=6 pid=789
+[drm:radeon_freelist_get]	  skipping buf=7 pid=789
+[drm:radeon_freelist_get]	  skipping buf=8 pid=789
+[drm:radeon_freelist_get]	  skipping buf=9 pid=789
+[drm:radeon_freelist_get]	  skipping buf=10 pid=789
+[drm:radeon_freelist_get]	  skipping buf=11 pid=789
+[drm:radeon_freelist_get]	  skipping buf=12 pid=789
+[drm:radeon_freelist_get]	  skipping buf=13 pid=789
+[drm:radeon_freelist_get]	  skipping buf=14 pid=789
+[drm:radeon_freelist_get]	  skipping buf=15 pid=789
+[drm:radeon_freelist_get]	  skipping buf=16 pid=789
+[drm:radeon_freelist_get]	  skipping buf=17 pid=789
+[drm:radeon_freelist_get]	  skipping buf=18 pid=789
+[drm:radeon_freelist_get]	  skipping buf=19 pid=789
+[drm:radeon_freelist_get]	  skipping buf=20 pid=789
+[drm:radeon_freelist_get]	  skipping buf=21 pid=789
+[drm:radeon_freelist_get]	  skipping buf=22 pid=789
+[drm:radeon_freelist_get]	  skipping buf=23 pid=789
+[drm:radeon_freelist_get]	  skipping buf=24 pid=789
+[drm:radeon_freelist_get]	  skipping buf=25 pid=789
+[drm:radeon_freelist_get]	  skipping buf=26 pid=789
+[drm:radeon_freelist_get]	  skipping buf=27 pid=789
+[drm:radeon_freelist_get]	  skipping buf=28 pid=789
+[drm:radeon_freelist_get]	  skipping buf=29 pid=789
+[drm:radeon_freelist_get]	  skipping buf=30 pid=758
+[drm:radeon_freelist_get]	  skipping buf=31 pid=789
+[drm:radeon_freelist_get]	ret buf=1 last=1 age=224 done=224
+[drm:radeon_cp_dispatch_texture] tex: ofs=0x8e00 p=64 f=7 x=0 y=960 w=1024 h=64
+[drm:radeon_cp_dispatch_texture]	tex=4096x1024  blit=4096
+[drm:radeon_cp_dispatch_indirect] indirect: buf=1 s=0x0 e=0xf020
+[drm:radeon_ioctl] pid=789, cmd=0xc018644e, nr=0x4e, dev 0xe200, auth=1
+[drm:radeon_freelist_get]	  skipping buf=0 pid=789
+[drm:radeon_freelist_get]	  skipping buf=1 pid=789
+[drm:radeon_freelist_get]	  skipping buf=2 pid=789
+[drm:radeon_freelist_get]	  skipping buf=3 pid=789
+[drm:radeon_freelist_get]	  skipping buf=4 pid=789
+[drm:radeon_freelist_get]	  skipping buf=5 pid=789
+[drm:radeon_freelist_get]	  skipping buf=6 pid=789
+[drm:radeon_freelist_get]	  skipping buf=7 pid=789
+[drm:radeon_freelist_get]	  skipping buf=8 pid=789
+[drm:radeon_freelist_get]	  skipping buf=9 pid=789
+[drm:radeon_freelist_get]	  skipping buf=10 pid=789
+[drm:radeon_freelist_get]	  skipping buf=11 pid=789
+[drm:radeon_freelist_get]	  skipping buf=12 pid=789
+[drm:radeon_freelist_get]	  skipping buf=13 pid=789
+[drm:radeon_freelist_get]	  skipping buf=14 pid=789
+[drm:radeon_freelist_get]	  skipping buf=15 pid=789
+[drm:radeon_freelist_get]	  skipping buf=16 pid=789
+[drm:radeon_freelist_get]	  skipping buf=17 pid=789
+[drm:radeon_freelist_get]	  skipping buf=18 pid=789
+[drm:radeon_freelist_get]	  skipping buf=19 pid=789
+[drm:radeon_freelist_get]	  skipping buf=20 pid=789
+[drm:radeon_freelist_get]	  skipping buf=21 pid=789
+[drm:radeon_freelist_get]	  skipping buf=22 pid=789
+[drm:radeon_freelist_get]	  skipping buf=23 pid=789
+[drm:radeon_freelist_get]	  skipping buf=24 pid=789
+[drm:radeon_freelist_get]	  skipping buf=25 pid=789
+[drm:radeon_freelist_get]	  skipping buf=26 pid=789
+[drm:radeon_freelist_get]	  skipping buf=27 pid=789
+[drm:radeon_freelist_get]	  skipping buf=28 pid=789
+[drm:radeon_freelist_get]	  skipping buf=29 pid=789
+[drm:radeon_freelist_get]	  skipping buf=30 pid=758
+[drm:radeon_freelist_get]	  skipping buf=31 pid=789
+[drm:radeon_freelist_get]	ret buf=2 last=2 age=195 done=226
+[drm:radeon_cp_dispatch_texture] tex: ofs=0x8e00 p=64 f=7 x=0 y=975 w=1024 h=49
+[drm:radeon_cp_dispatch_texture]	tex=4096x1024  blit=4096
+[drm:radeon_cp_dispatch_indirect] indirect: buf=2 s=0x0 e=0xf020
+[drm:radeon_ioctl] pid=789, cmd=0xc018644e, nr=0x4e, dev 0xe200, auth=1
+[drm:radeon_freelist_get]	  skipping buf=0 pid=789
+[drm:radeon_freelist_get]	  skipping buf=1 pid=789
+[drm:radeon_freelist_get]	  skipping buf=2 pid=789
+[drm:radeon_freelist_get]	  skipping buf=3 pid=789
+[drm:radeon_freelist_get]	  skipping buf=4 pid=789
+[drm:radeon_freelist_get]	  skipping buf=5 pid=789
+[drm:radeon_freelist_get]	  skipping buf=6 pid=789
+[drm:radeon_freelist_get]	  skipping buf=7 pid=789
+[drm:radeon_freelist_get]	  skipping buf=8 pid=789
+[drm:radeon_freelist_get]	  skipping buf=9 pid=789
+[drm:radeon_freelist_get]	  skipping buf=10 pid=789
+[drm:radeon_freelist_get]	  skipping buf=11 pid=789
+[drm:radeon_freelist_get]	  skipping buf=12 pid=789
+[drm:radeon_freelist_get]	  skipping buf=13 pid=789
+[drm:radeon_freelist_get]	  skipping buf=14 pid=789
+[drm:radeon_freelist_get]	  skipping buf=15 pid=789
+[drm:radeon_freelist_get]	  skipping buf=16 pid=789
+[drm:radeon_freelist_get]	  skipping buf=17 pid=789
+[drm:radeon_freelist_get]	  skipping buf=18 pid=789
+[drm:radeon_freelist_get]	  skipping buf=19 pid=789
+[drm:radeon_freelist_get]	  skipping buf=20 pid=789
+[drm:radeon_freelist_get]	  skipping buf=21 pid=789
+[drm:radeon_freelist_get]	  skipping buf=22 pid=789
+[drm:radeon_freelist_get]	  skipping buf=23 pid=789
+[drm:radeon_freelist_get]	  skipping buf=24 pid=789
+[drm:radeon_freelist_get]	  skipping buf=25 pid=789
+[drm:radeon_freelist_get]	  skipping buf=26 pid=789
+[drm:radeon_freelist_get]	  skipping buf=27 pid=789
+[drm:radeon_freelist_get]	  skipping buf=28 pid=789
+[drm:radeon_freelist_get]	  skipping buf=29 pid=789
+[drm:radeon_freelist_get]	  skipping buf=30 pid=758
+[drm:radeon_freelist_get]	  skipping buf=31 pid=789
+[drm:radeon_freelist_get]	ret buf=3 last=3 age=196 done=226
+[drm:radeon_cp_dispatch_texture] tex: ofs=0x8e00 p=64 f=7 x=0 y=990 w=1024 h=34
+[drm:radeon_cp_dispatch_texture]	tex=4096x1024  blit=4096
+[drm:radeon_cp_dispatch_indirect] indirect: buf=3 s=0x0 e=0xf020
+[drm:radeon_ioctl] pid=789, cmd=0xc018644e, nr=0x4e, dev 0xe200, auth=1
+[drm:radeon_freelist_get]	  skipping buf=0 pid=789
+[drm:radeon_freelist_get]	  skipping buf=1 pid=789
+[drm:radeon_freelist_get]	  skipping buf=2 pid=789
+[drm:radeon_freelist_get]	  skipping buf=3 pid=789
+[drm:radeon_freelist_get]	  skipping buf=4 pid=789
+[drm:radeon_freelist_get]	  skipping buf=5 pid=789
+[drm:radeon_freelist_get]	  skipping buf=6 pid=789
+[drm:radeon_freelist_get]	  skipping buf=7 pid=789
+[drm:radeon_freelist_get]	  skipping buf=8 pid=789
+[drm:radeon_freelist_get]	  skipping buf=9 pid=789
+[drm:radeon_freelist_get]	  skipping buf=10 pid=789
+[drm:radeon_freelist_get]	  skipping buf=11 pid=789
+[drm:radeon_freelist_get]	  skipping buf=12 pid=789
+[drm:radeon_freelist_get]	  skipping buf=13 pid=789
+[drm:radeon_freelist_get]	  skipping buf=14 pid=789
+[drm:radeon_freelist_get]	  skipping buf=15 pid=789
+[drm:radeon_freelist_get]	  skipping buf=16 pid=789
+[drm:radeon_freelist_get]	  skipping buf=17 pid=789
+[drm:radeon_freelist_get]	  skipping buf=18 pid=789
+[drm:radeon_freelist_get]	  skipping buf=19 pid=789
+[drm:radeon_freelist_get]	  skipping buf=20 pid=789
+[drm:radeon_freelist_get]	  skipping buf=21 pid=789
+[drm:radeon_freelist_get]	  skipping buf=22 pid=789
+[drm:radeon_freelist_get]	  skipping buf=23 pid=789
+[drm:radeon_freelist_get]	  skipping buf=24 pid=789
+[drm:radeon_freelist_get]	  skipping buf=25 pid=789
+[drm:radeon_freelist_get]	  skipping buf=26 pid=789
+[drm:radeon_freelist_get]	  skipping buf=27 pid=789
+[drm:radeon_freelist_get]	  skipping buf=28 pid=789
+[drm:radeon_freelist_get]	  skipping buf=29 pid=789
+[drm:radeon_freelist_get]	  skipping buf=30 pid=758
+[drm:radeon_freelist_get]	  skipping buf=31 pid=789
+[drm:radeon_freelist_get]	ret buf=4 last=4 age=197 done=228
+[drm:radeon_cp_dispatch_texture] tex: ofs=0x8e00 p=64 f=7 x=0 y=1005 w=1024 h=19
+[drm:radeon_cp_dispatch_texture]	tex=4096x1024  blit=4096
+[drm:radeon_cp_dispatch_indirect] indirect: buf=4 s=0x0 e=0xf020
+[drm:radeon_ioctl] pid=789, cmd=0xc018644e, nr=0x4e, dev 0xe200, auth=1
+[drm:radeon_freelist_get]	  skipping buf=0 pid=789
+[drm:radeon_freelist_get]	  skipping buf=1 pid=789
+[drm:radeon_freelist_get]	  skipping buf=2 pid=789
+[drm:radeon_freelist_get]	  skipping buf=3 pid=789
+[drm:radeon_freelist_get]	  skipping buf=4 pid=789
+[drm:radeon_freelist_get]	  skipping buf=5 pid=789
+[drm:radeon_freelist_get]	  skipping buf=6 pid=789
+[drm:radeon_freelist_get]	  skipping buf=7 pid=789
+[drm:radeon_freelist_get]	  skipping buf=8 pid=789
+[drm:radeon_freelist_get]	  skipping buf=9 pid=789
+[drm:radeon_freelist_get]	  skipping buf=10 pid=789
+[drm:radeon_freelist_get]	  skipping buf=11 pid=789
+[drm:radeon_freelist_get]	  skipping buf=12 pid=789
+[drm:radeon_freelist_get]	  skipping buf=13 pid=789
+[drm:radeon_freelist_get]	  skipping buf=14 pid=789
+[drm:radeon_freelist_get]	  skipping buf=15 pid=789
+[drm:radeon_freelist_get]	  skipping buf=16 pid=789
+[drm:radeon_freelist_get]	  skipping buf=17 pid=789
+[drm:radeon_freelist_get]	  skipping buf=18 pid=789
+[drm:radeon_freelist_get]	  skipping buf=19 pid=789
+[drm:radeon_freelist_get]	  skipping buf=20 pid=789
+[drm:radeon_freelist_get]	  skipping buf=21 pid=789
+[drm:radeon_freelist_get]	  skipping buf=22 pid=789
+[drm:radeon_freelist_get]	  skipping buf=23 pid=789
+[drm:radeon_freelist_get]	  skipping buf=24 pid=789
+[drm:radeon_freelist_get]	  skipping buf=25 pid=789
+[drm:radeon_freelist_get]	  skipping buf=26 pid=789
+[drm:radeon_freelist_get]	  skipping buf=27 pid=789
+[drm:radeon_freelist_get]	  skipping buf=28 pid=789
+[drm:radeon_freelist_get]	  skipping buf=29 pid=789
+[drm:radeon_freelist_get]	  skipping buf=30 pid=758
+[drm:radeon_freelist_get]	  skipping buf=31 pid=789
+[drm:radeon_freelist_get]	ret buf=5 last=5 age=198 done=228
+[drm:radeon_cp_dispatch_texture] tex: ofs=0x8e00 p=64 f=7 x=0 y=1020 w=1024 h=4
+[drm:radeon_cp_dispatch_texture]	tex=4096x1024  blit=4096
+[drm:radeon_cp_dispatch_indirect] indirect: buf=5 s=0x0 e=0x4020
+[drm:radeon_ioctl] pid=789, cmd=0x40106449, nr=0x49, dev 0xe200, auth=1
+[drm:radeon_cp_vertex] radeon_cp_vertex: pid=789 index=31 count=12 discard=1
+[drm:radeon_cp_dispatch_vertex] radeon_cp_dispatch_vertex: nbox=1 size=12
+[drm:radeon_emit_state] radeon_emit_state: dirty=0x00018fff
+[drm:radeon_emit_context]	  radeon_emit_context
+[drm:radeon_emit_vertfmt]	  radeon_emit_vertfmt
+[drm:radeon_emit_line]     radeon_emit_line
+[drm:radeon_emit_bumpmap]	  radeon_emit_bumpmap
+[drm:radeon_emit_masks] 	radeon_emit_masks
+[drm:radeon_emit_viewport]     radeon_emit_viewport
+[drm:radeon_emit_setup] 	radeon_emit_setup
+[drm:radeon_emit_misc]     radeon_emit_misc
+[drm:radeon_emit_tex0]     radeon_emit_tex0: offset=0x2380000
+[drm:radeon_emit_tex1]     radeon_emit_tex1: offset=0x0
+[drm:radeon_emit_clip_rect]    box:  x1=7 y1=172  x2=1287 y2=1196
+[drm:radeon_ioctl] pid=789, cmd=0x4008642b, nr=0x2b, dev 0xe200, auth=1
+[drm:radeon_unlock] DRM(unlock)
+[drm:radeon_lock] 1 has lock
+[drm:radeon_ioctl] pid=789, cmd=0x4008642a, nr=0x2a, dev 0xe200, auth=1
+[drm:radeon_lock] 3 (pid 789) requests lock (0x00000001), flags = 0x00000000
+[drm:radeon_lock] 3 has lock
+[drm:radeon_ioctl] pid=789, cmd=0x6447, nr=0x47, dev 0xe200, auth=1
+[drm:radeon_cp_swap] radeon_cp_swap
+[drm:radeon_cp_dispatch_swap] radeon_cp_dispatch_swap
+[drm:radeon_cp_dispatch_swap] dispatch swap 7,172-1280,1024
+[drm:radeon_ioctl] pid=758, cmd=0x4008642a, nr=0x2a, dev 0xe200, auth=1
+[drm:radeon_lock] 1 (pid 758) requests lock (0x00000003), flags = 0x00000000
+[drm:radeon_lock] 1 has lock
+[drm:radeon_vm_close] 0x400ed000,0x00001000
+[drm:radeon_vm_close] 0x404fd000,0x04000000
+[drm:radeon_vm_close] 0x444fd000,0x00080000
+[drm:radeon_vm_close] 0x4457d000,0x00200000
+[drm:radeon_vm_close] 0x4477d000,0x004e0000

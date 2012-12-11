@@ -1,0 +1,19 @@
+#!/bin/bash
+
+
+
+echo "syncing and unmounting"
+
+sync
+/bin/mount -f -o remount -r /
+/bin/mount -f -o remount -r /home
+/bin/mount -f -o remount -r /boot
+/bin/umount -f /
+sync
+sync
+sync
+sync
+sync
+reboot
+
+

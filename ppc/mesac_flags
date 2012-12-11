@@ -1,0 +1,1 @@
+-O -I. -Idri -Idrivers/ati -Iinclude -Ikernel -Ilib/GL/dri -Ilib/GL/glfb -Ilib/GL/mesa/dri/ -Ilib/GL/mesa/src/ -Ilib/GL/mesa/src/drv/common/ -Ios-support -Ios-support/linux/drm/kernel -I../sdl/src/video -I../sdl/src/video/fbcon -I../sdl/include -DMESALIB -DNDEBUG

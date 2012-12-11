@@ -1,0 +1,27 @@
+# Specify a target machine for cross platform compiling.
+# i686, ppc
+MACHINE := $(shell arch)
+
+
+
+
+# Architecture dependant configuration
+
+ifeq ($(MACHINE), i686)
+CFLAGS = -O3 -march=i686 -fmessage-length=0 -funroll-all-loops \
+	-fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 \
+	-I/usr/include/glib -I/usr/lib/glib/include
+endif
+
+
+
+
+LINKER = g++ -shared 
+GCC = gcc
+GXX = g++
+
+OBJDIR = $(MACHINE)
+
+$(shell sh -c 'if ! test -d $(OBJDIR)\; then mkdir $(OBJDIR)\; fi' )
+
+

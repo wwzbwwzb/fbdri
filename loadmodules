@@ -1,0 +1,9 @@
+/sbin/rmmod radeon
+
+/sbin/insmod agpgart
+/sbin/insmod fbcon-cfb8
+/sbin/insmod fbcon-cfb16
+/sbin/insmod fbcon-cfb32
+/sbin/insmod /usr/src/dri/`arch`/kernel/radeonfb.o
+/sbin/insmod /usr/src/dri/os-support/linux/drm/kernel/radeon.o
+

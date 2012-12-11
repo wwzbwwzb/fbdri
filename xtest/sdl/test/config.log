@@ -1,0 +1,70 @@
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:562: checking host system type
+configure:583: checking target system type
+configure:613: checking for a BSD compatible install
+configure:666: checking whether build environment is sane
+configure:723: checking whether make sets ${MAKE}
+configure:770: checking for working aclocal
+configure:783: checking for working autoconf
+configure:796: checking for working automake
+configure:809: checking for working autoheader
+configure:822: checking for working makeinfo
+configure:840: checking for gcc
+configure:953: checking whether the C compiler (gcc -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include ) works
+configure:969: gcc -o conftest -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include   conftest.c  1>&5
+configure:995: checking whether the C compiler (gcc -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include ) is a cross-compiler
+configure:1000: checking whether we are using GNU C
+configure:1009: gcc -E conftest.c
+configure:1028: checking whether gcc accepts -g
+configure:1062: checking for working const
+configure:1116: gcc -c -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include  conftest.c 1>&5
+configure:1159: checking how to run the C preprocessor
+configure:1180: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1243: checking for X
+configure:1557: checking for dnet_ntoa in -ldnet
+configure:1576: gcc -o conftest -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include   conftest.c -ldnet   1>&5
+/usr/bin/ld: cannot find -ldnet
+collect2: ld returned 1 exit status
+configure: failed program was:
+#line 1565 "configure"
+#include "confdefs.h"
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char dnet_ntoa();
+
+int main() {
+dnet_ntoa()
+; return 0; }
+configure:1598: checking for dnet_ntoa in -ldnet_stub
+configure:1617: gcc -o conftest -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include   conftest.c -ldnet_stub   1>&5
+/usr/bin/ld: cannot find -ldnet_stub
+collect2: ld returned 1 exit status
+configure: failed program was:
+#line 1606 "configure"
+#include "confdefs.h"
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char dnet_ntoa();
+
+int main() {
+dnet_ntoa()
+; return 0; }
+configure:1646: checking for gethostbyname
+configure:1674: gcc -o conftest -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include   conftest.c  1>&5
+configure:1744: checking for connect
+configure:1772: gcc -o conftest -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include   conftest.c  1>&5
+configure:1836: checking for remove
+configure:1864: gcc -o conftest -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include   conftest.c  1>&5
+configure:1928: checking for shmat
+configure:1956: gcc -o conftest -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include   conftest.c  1>&5
+configure:2029: checking for IceConnectionNumber in -lICE
+configure:2048: gcc -o conftest -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include   -L/usr/X11R6/lib conftest.c -lICE   1>&5
+configure:2124: checking for sdl-config
+configure:2159: checking for SDL - version >= 1.2.0
+configure:2244: gcc -o conftest -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include/SDL -D_REENTRANT   conftest.c  -L/usr/local/lib -Wl,-rpath,/usr/local/lib -lSDL -lpthread 1>&5
+configure:2331: checking for OpenGL support
+configure:2348: gcc -c -O3 -march=i686 -fmessage-length=0 -funroll-all-loops -fomit-frame-pointer -malign-loops=2 -malign-jumps=2 -malign-functions=2 -I/usr/local/include  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include/SDL -D_REENTRANT  conftest.c 1>&5
